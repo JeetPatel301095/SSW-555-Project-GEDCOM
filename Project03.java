@@ -159,7 +159,6 @@ class Project03
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Person in : Indi)
         {
-            //System.out.println("\t" + in.getId() + "\t" + "\t" + in.getFirstName()+" "+in.getLastName() + "\t"  + "\t" + in.getSex() + "\t"  + "\t"   + "\t" + simpleDateFormat.format(in.getBirthDate()) + "\t"  + "\t" + in.getAge() + "\t"  + "\t" + !in.getDead() + "\t" + "\t" + (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) )+ "\t"  + "\t" +  in.getFamc() + "\t"  + "\t" + in.getFams());
             System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
                     in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
             System.out.println();
@@ -169,14 +168,13 @@ class Project03
         System.out.println("Families");
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-        // System.out.println("|\tID\t|\t\tMarried\t\t|\tDivorced\t|\tHusband ID\t|\t\tHusband Name\t\t|\tWife ID\t|\t\tWife Name\t\t|\tChildren\t|");
+
         System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s", "ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
         System.out.println();
         for(Family family : fams)
         {
-            //System.out.println("\t" + family.getId() + "\t" + "\t" + (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) + "\t"  + "\t" + family.getDivorced() + "\t"  + "\t" +"\t" +"\t" + family.getHusbandId() + "\t" +"\t" + "\t" +"\t" +family.getHusbandFullName() + "\t" +"\t" + "\t" + family.getWifeId() + "\t" +"\t" +"\t" + family.getWifeFullName() + "\t" +"\t" + family.getChildrenIds() );
             System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s",
-                    family.getId(), (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) , family.getDivorced(), family.getHusbandId(), family.getHusbandFullName(), family.getWifeId(), family.getWifeFullName(), family.getChildrenIds());
+                    family.getId(), (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) , family.getDivorced(), family.getHusbandId() == null ? "NA" : family.getHusbandId() , family.getHusbandFullName() == null?"NA":family.getHusbandFullName(), family.getWifeId()== null ? "NA" : family.getWifeId(), family.getWifeFullName()== null ? "NA" : family.getWifeFullName(), family.getChildrenIds()== null ? "NA" : family.getChildrenIds());
             System.out.println();
         }
 
