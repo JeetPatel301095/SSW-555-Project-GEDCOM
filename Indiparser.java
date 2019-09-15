@@ -18,7 +18,7 @@ class Indiparser
             {
                 if(b[1].equals("NAME"))
                 {
-                    System.out.println("Here");
+//                    System.out.println("Here");
                     A.setFirstName(b[2]);
                     A.setLastName(b[3]);
                 }
@@ -41,20 +41,22 @@ class Indiparser
                 }
                 else if(b[1].equals("FAMS"))
                 {
-                    A.setFamc(b[2]);
+                    A.setFams(b[2]);
                 }
             }
             if(b[0].equals("2"))
             {
                 if(f==1)
                 {
-                    System.out.println("Going to B");
+//                    System.out.println("Going to B");
                     A.setBirthDate(b[2],b[3],b[4]);
+                    A.setAge();
                     f=0;
                 }
                 if(f==2)
                 {
                     A.setDeathDate(b[2],b[3],b[4]);
+                    A.setAge();
                     f=0;
                 }
             }
