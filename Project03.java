@@ -12,7 +12,10 @@ class Project03
 
         ArrayList<Person> Indi = new ArrayList<Person>();
 
-        FileReader fileReader = new FileReader("proj02test.ged");
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Please enter filename under the same directory: ");
+        String fileName = myObj.nextLine();  // Read user input
+        FileReader fileReader = new FileReader(fileName);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> gedComStrings = new ArrayList<String>();
 
