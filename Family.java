@@ -64,19 +64,35 @@ class Family
     }
     public String getHusbandId()
     {
-        return this.dad.getId();
+        if(this.dad == null){
+            return "NA";
+        }else{
+            return this.dad.getId();
+        }
     }
     public String getHusbandFullName()
     {
-        return this.dad.getFirstName() + this.dad.getLastName();
+        if(this.dad == null){
+            return "NA";
+        }else{
+            return this.dad.getFirstName() + this.dad.getLastName();
+        }
     }
     public String getWifeId()
     {
-        return this.mom.getId();
+        if(this.mom == null){
+            return "NA";
+        }else{
+            return this.mom.getId();
+        }
     }
     public String getWifeFullName()
     {
-        return this.mom.getFirstName() + this.mom.getLastName();
+        if(this.mom == null){
+            return "NA";
+        }else{
+            return this.mom.getFirstName() + this.mom.getLastName();
+        }
     }
     public Date getMarriageDate()
     {
