@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
@@ -8,13 +9,13 @@ class Project03
         // int f=0;
         // Person A[] = new Person();
         int i=0;
-        int y=0;
+
         ArrayList<Person> Indi = new ArrayList<Person>();
-        String[] Indidetails = new String[15];
+
         FileReader fileReader = new FileReader("proj02test.ged");
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> gedComStrings = new ArrayList<String>();
-        
+
         String newLine;
 		while ((newLine = bufferedReader.readLine()) != null) {
 			gedComStrings.add(newLine);
@@ -36,7 +37,8 @@ class Project03
                 }
                 if(splitTokens[2].equals("INDI"))
                 {
-                    
+                    int y=0;
+                    String[] Indidetails = new String[100];
                     Indidetails[y] = inLine;
                     y++;
                     String gline = gedComStrings.get(++j);
@@ -48,7 +50,9 @@ class Project03
                         y++;
                         gline = gedComStrings.get(++j);
                         split = gline.split("\\s+");
+
                     }
+                    j--;
                     Indiparser a = new Indiparser();
                     Person temp=a.parseindi(Indidetails);
                     Indi.add(temp);
@@ -116,7 +120,7 @@ class Project03
                         if(nextLineMarried && nextLineWords[0].equals("2"))
                         {
                             String date = nextLineWords[2] + " " +  nextLineWords[3] + " " + nextLineWords[4];
-                            tempFam.setMarriageDate(date);
+                            tempFam.setMarriageDate(nextLineWords[2], nextLineWords[3], nextLineWords[4]);
                             nextLineMarried = false;
                         }
                         if(nextLineWords[1].equals("DIV"))
@@ -127,40 +131,53 @@ class Project03
                         if(nextLineDivorced && nextLineWords[0].equals("2"))
                         {
                             String date = nextLineWords[2] + " " + nextLineWords[3] +  " " + nextLineWords[4];
-                            tempFam.setDivorceDate(date);
+                            tempFam.setDivorceDate(nextLineWords[2], nextLineWords[3], nextLineWords[4]);
+                            tempFam.setDivorced(true);
                             nextLineDivorced = false;
                         }
 
                         count++;
                     }
-                    if(!divorced){
-                        tempFam.setDivorceDate("NA");
-                    }
+//                    if(!divorced){
+//                        tempFam.setDivorceDate("NA");
+//                    }
+//                    if(tempFam.getMarriageDate() == null){
+//                        tempFam.setMarriageDate("NA");
+//                    }
                     fams.add(tempFam);
                 }
             }
         }
-        /*
-        System.out.println("testing my stuff");
-        System.out.println(fams.get(0).getHusbandId());
-        //System.out.println(fams.get(0).getWifeId()); THIS LINE DOESN'T WORK FOR TEST because wife was never declared as an INDI
-        System.out.println(fams.get(0).getMarriageDate());
-        System.out.println(fams.get(0).getDivorceDate());
-
-        */
-        System.out.println("-----------------");
+        System.out.println("Individuals");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%10s %20s %20s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Person in : Indi)
         {
-            System.out.println(in.getId());
+            //System.out.println("\t" + in.getId() + "\t" + "\t" + in.getFirstName()+" "+in.getLastName() + "\t"  + "\t" + in.getSex() + "\t"  + "\t"   + "\t" + simpleDateFormat.format(in.getBirthDate()) + "\t"  + "\t" + in.getAge() + "\t"  + "\t" + !in.getDead() + "\t" + "\t" + (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) )+ "\t"  + "\t" +  in.getFamc() + "\t"  + "\t" + in.getFams());
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
         }
-        // for(String line : gedComStrings)
-        // {
-        //     i++;
-            // String inLine = line;
-            // String[] splitTokens = inLine.split("\\s+"); 
-            // System.out.println(splitTokens[0]);
-            // if(splitTokens[])
-        // }
-        
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Families");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        // System.out.println("|\tID\t|\t\tMarried\t\t|\tDivorced\t|\tHusband ID\t|\t\tHusband Name\t\t|\tWife ID\t|\t\tWife Name\t\t|\tChildren\t|");
+        System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s", "ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
+        System.out.println();
+        for(Family family : fams)
+        {
+            //System.out.println("\t" + family.getId() + "\t" + "\t" + (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) + "\t"  + "\t" + family.getDivorced() + "\t"  + "\t" +"\t" +"\t" + family.getHusbandId() + "\t" +"\t" + "\t" +"\t" +family.getHusbandFullName() + "\t" +"\t" + "\t" + family.getWifeId() + "\t" +"\t" +"\t" + family.getWifeFullName() + "\t" +"\t" + family.getChildrenIds() );
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s",
+                    family.getId(), (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) , family.getDivorced(), family.getHusbandId(), family.getHusbandFullName(), family.getWifeId(), family.getWifeFullName(), family.getChildrenIds());
+            System.out.println();
+        }
+
+
+
     }
 }   
