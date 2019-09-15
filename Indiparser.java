@@ -1,7 +1,8 @@
 class Indiparser
 {
-    public void parseindi(String[] a)
+    public Person parseindi(String[] a)
     {
+        int f=0;
         Person A = new Person();
         for(int i=0;i<a.length;i++)
         {
@@ -21,7 +22,43 @@ class Indiparser
                     A.setFirstName(b[2]);
                     A.setLastName(b[3]);
                 }
+                else if(b[1].equals("SEX"))
+                {
+                    A.setSex(b[2]);
+                }
+                else if(b[1].equals("BIRT"))
+                {
+                    f=1;
+                }
+                else if(b[1].equals("DEAT"))
+                {
+                    f=2;
+                    A.setDead(true);
+                }
+                else if(b[1].equals("FAMC"))
+                {
+                    A.setFamc(b[2]);
+                }
+                else if(b[1].equals("FAMS"))
+                {
+                    A.setFamc(b[2]);
+                }
+            }
+            if(b[0].equals("2"))
+            {
+                if(f==1)
+                {
+                    System.out.println("Going to B");
+                    A.setBirthDate(b[2],b[3],b[4]);
+                    f=0;
+                }
+                if(f==2)
+                {
+                    A.setDeathDate(b[2],b[3],b[4]);
+                    f=0;
+                }
             }
         }
+        return A;
     }
 }

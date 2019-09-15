@@ -9,6 +9,7 @@ class Project03
         // Person A[] = new Person();
         int i=0;
         int y=0;
+        ArrayList<Person> Indi = new ArrayList<Person>();
         String[] Indidetails = new String[15];
         FileReader fileReader = new FileReader("C:\\Users\\Jeet\\Jeet\\SW-555\\SSW-555-Project-GEDCOM\\proj02test.ged");
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -48,16 +49,18 @@ class Project03
                         gline = gedComStrings.get(++j);
                         split = gline.split("\\s+");
                     }
+                    Indiparser a = new Indiparser();
+                    Person temp=a.parseindi(Indidetails);
+                    Indi.add(temp);
                 }
             }
         }
-        for(int g = 0; g<y;g++)
-        {
-            System.out.println(Indidetails[g]);
-        }
+
         System.out.println("-----------------");
-        Indiparser a = new Indiparser();
-        a.parseindi(Indidetails);
+        for(Person in : Indi)
+        {
+            System.out.println(in.getId());
+        }
         // for(String line : gedComStrings)
         // {
         //     i++;
