@@ -157,6 +157,7 @@ class Project03
         System.out.println();
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Collections.sort(Indi, (o1, o2) -> o1.getId().compareTo(o2.getId()));
         for(Person in : Indi)
         {
             System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
@@ -168,7 +169,7 @@ class Project03
         System.out.println("Families");
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-
+        Collections.sort(fams, (o1, o2) -> o1.getId().compareTo(o2.getId()));
         System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s", "ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
         System.out.println();
         for(Family family : fams)
