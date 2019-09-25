@@ -179,7 +179,8 @@ class Project03
             System.out.println();
         }
 
-
-
+        Sprint1 sprint1 = new Sprint1();
+        sprint1.US07(Indi);
+        sprint1.US08(fams, Indi);
     }
 }   
