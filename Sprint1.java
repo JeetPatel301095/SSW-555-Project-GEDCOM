@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +36,7 @@ public class Sprint1 {
 
     public boolean US08(ArrayList<Family> fams, ArrayList<Person> person){
         boolean res = true;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Family fam: fams){
             if(fam.getChildrenIds()!=null){ //if the family has child
                 for(Person p: person){
@@ -42,12 +44,12 @@ public class Sprint1 {
                         if (p.getId().equals(id)) { //find the child
                             if (p.getBirthDate().before(fam.getMarriageDate())) {  //if the child birthday is after marriage day.
                                 res = false;
-                                System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + p.getBirthDate() + " before marriage on " + fam.getMarriageDate());
+                                System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + simpleDateFormat.format(p.getBirthDate()) + " before marriage on " + simpleDateFormat.format(fam.getMarriageDate()));
                             }
                             if (fam.getDivorced()) {
-                                if (calculateMonth(p.getBirthDate(), fam.getDivorceDate()) > 9) {
+                                if (calculateMonth(fam.getDivorceDate(),p.getBirthDate()) > 9) {
                                     res = false;
-                                    System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + p.getBirthDate() + " after divorce on " + fam.getDivorceDate());
+                                    System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + simpleDateFormat.format(p.getBirthDate()) + " after divorce on(more than 9 months) " + simpleDateFormat.format(fam.getDivorceDate()));
                                 }
                             }
                         }
@@ -59,8 +61,8 @@ public class Sprint1 {
     }
 
     public int calculateMonth(Date start, Date end){
-        YearMonth m1 = YearMonth.from(start.toInstant());
-        YearMonth m2 = YearMonth.from(end.toInstant());
+        YearMonth m1 = YearMonth.from(start.toInstant().atZone(ZoneId.of("UTC")));
+        YearMonth m2 = YearMonth.from(end.toInstant().atZone(ZoneId.of("UTC")));
 
         return (int)m1.until(m2, ChronoUnit.MONTHS) + 1;
     }
