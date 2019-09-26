@@ -51,11 +51,11 @@ public class Sprint1 {
             }
 
             if(dadDeathDate.before(mDate)){
-                System.out.println("ERROR: FAMILY: US05" + fam.getId() + "Married " + simpleDateFormat.format(fam.getMarriageDate()) + "after husband's (" + dad + ") death on" + simpleDateFormat.format(dadDeathDate)); 
+                System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
                 return false;
             }
             if(momDeathDate.before(mDate)){
-                System.out.println("ERROR: FAMILY: US05" + fam.getId() + "Married " + simpleDateFormat.format(fam.getMarriageDate()) + "after wife's (" + mom + ") death on" + simpleDateFormat.format(momDeathDate)); 
+                System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
                 return false;
             }
 

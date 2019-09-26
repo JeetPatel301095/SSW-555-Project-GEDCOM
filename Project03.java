@@ -186,5 +186,6 @@ class Project03
         Sprint1Test test = new Sprint1Test();
         test.testUS07();
         test.testUS08();
+        test.testUS05();
     }
 }   

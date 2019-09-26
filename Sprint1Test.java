@@ -25,11 +25,12 @@ public class Sprint1Test extends Sprint1{
 
         f1.setDad(p1);
         f1.setMom(p2);
+        f1.setId("F1");
         f1.setMarriageDate("1", "JAN", "2001");
         ArrayList<Family> fam = new ArrayList<>();
         fam.add(f1);
 
-        asserEquals(false, sprint1.US05(ppl, fam));
+        assertEquals(false, sprint1.US05(ppl, fam));
     }
 
     public void testUS07(){
