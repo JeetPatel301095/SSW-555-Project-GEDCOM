@@ -12,39 +12,50 @@ import static java.util.Calendar.DATE;
 public class Sprint1 {
 
     //Xueshi Wang Sprint 1 US07/US08
-    public void US07(ArrayList<Person> person){
+    public boolean US07(ArrayList<Person> person){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        boolean res=true;
         for(Person p:person){
             if(p.getDead()){
                 Date deathDate = p.getDeathDate();
                 Date birthDate = p.getBirthDate();
                 if(calculateYear(birthDate, deathDate) > 150){
-                    System.out.println("ERROR: INDIVIDUAL: US07: "+p.getId()+": More than 150 years old at death. Birth date "+simpleDateFormat.format(p.getBirthDate()+"Death date ")+simpleDateFormat.format(p.getDeathDate()));
+                    res = false;
+                    System.out.println("ERROR: INDIVIDUAL: US07: "+p.getId()+": More than 150 years old at death. Birth date "+simpleDateFormat.format(p.getBirthDate())+" Death date "+simpleDateFormat.format(p.getDeathDate()));
                 }
             }
+
             else if(p.getAge() > 150){
-                System.out.println("ERROR: INDIVIDUAL: US07:"+p.getId()+": More than 150 years old. Birth date "+simpleDateFormat.format(p.getBirthDate()));
+                res = false;
+                System.out.println("ERROR: INDIVIDUAL: US07: "+p.getId()+": More than 150 years old. Birth date "+simpleDateFormat.format(p.getBirthDate()));
             }
         }
+        return res;
     }
 
-    public void US08(ArrayList<Family> fams, ArrayList<Person> person){
+    public boolean US08(ArrayList<Family> fams, ArrayList<Person> person){
+        boolean res = true;
         for(Family fam: fams){
             if(fam.getChildrenIds()!=null){ //if the family has child
                 for(Person p: person){
-                    if(p.getId().equals(fam.getChildrenIds())){ //find the child
-                        if(p.getBirthDate().after(fam.getMarriageDate())){  //if the child birthday is after marriage day.
-                            System.out.println("ANOMALY: FAMILY: US08: "+fam.getId()+ "Child "+p.getId()+" born "+p.getBirthDate()+" before marriage on "+fam.getMarriageDate());
-                        }
-                        if(fam.getDivorced()) {
-                            if (calculateMonth(p.getBirthDate(), fam.getDivorceDate()) > 9) {
-                                System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + p.getBirthDate() + " after divorce on " + fam.getDivorceDate());
+                    for(String id: fam.getChildrenIds()) {
+                        if (p.getId().equals(id)) { //find the child
+                            if (p.getBirthDate().before(fam.getMarriageDate())) {  //if the child birthday is after marriage day.
+                                res = false;
+                                System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + p.getBirthDate() + " before marriage on " + fam.getMarriageDate());
+                            }
+                            if (fam.getDivorced()) {
+                                if (calculateMonth(p.getBirthDate(), fam.getDivorceDate()) > 9) {
+                                    res = false;
+                                    System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + p.getBirthDate() + " after divorce on " + fam.getDivorceDate());
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        return res;
     }
 
     public int calculateMonth(Date start, Date end){

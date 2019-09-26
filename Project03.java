@@ -15,7 +15,7 @@ class Project03
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Please enter filename under the same directory: ");
         String fileName = myObj.nextLine();  // Read user input
-        FileReader fileReader = new FileReader(fileName);
+        FileReader fileReader = new FileReader("proj02test.ged");
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> gedComStrings = new ArrayList<String>();
 
@@ -182,5 +182,9 @@ class Project03
         Sprint1 sprint1 = new Sprint1();
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
+
+        Sprint1Test test = new Sprint1Test();
+        test.testUS07();
+        test.testUS08();
     }
 }   
