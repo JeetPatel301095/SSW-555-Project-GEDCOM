@@ -12,6 +12,57 @@ import static java.util.Calendar.DATE;
 
 public class Sprint1 {
 
+    //Chris Rudel Sprint 1 US04/US05
+    public boolean US05(ArrayList<Person> person, ArrayList<Family> family){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for(Family fam: family){
+            String dad = fam.getHusbandId();
+            String mom = fam.getWifeId();
+            boolean dadDead = false;
+            Date dadDeathDate = null;
+            boolean momDead = false;
+            Date momDeathDate = null;
+            for(Person p: person){
+                if(p.getId().equals(dad)){
+                    dadDead = p.getDead();
+                    if(dadDead){
+                        dadDeathDate = p.getDeathDate();
+                    }
+                }
+                if(p.getId().equals(mom)){
+                    momDead = p.getDead();
+                    if(momDead){
+                        momDeathDate = p.getDeathDate();
+                    }
+                }
+            }
+            Date mDate = fam.getMarriageDate();
+            if(dadDeathDate == null && dadDead){
+                System.out.println("ERROR: No death date available for father");
+                return true;
+            }
+            if(momDeathDate == null && momDead){
+                System.out.println("ERROR: No death date available for mother");
+                return true;
+            }
+            if(mDate == null){
+                System.out.println("ERROR: No marriage date available for the family");
+                return true;
+            }
+
+            if(dadDeathDate.before(mDate)){
+                System.out.println("ERROR: FAMILY: US05" + fam.getId() + "Married " + simpleDateFormat.format(fam.getMarriageDate()) + "after husband's (" + dad + ") death on" + simpleDateFormat.format(dadDeathDate)); 
+                return false;
+            }
+            if(momDeathDate.before(mDate)){
+                System.out.println("ERROR: FAMILY: US05" + fam.getId() + "Married " + simpleDateFormat.format(fam.getMarriageDate()) + "after wife's (" + mom + ") death on" + simpleDateFormat.format(momDeathDate)); 
+                return false;
+            }
+
+        }
+        return true;
+    }
+
     //Xueshi Wang Sprint 1 US07/US08
     public boolean US07(ArrayList<Person> person){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -6,6 +6,32 @@ import static org.junit.Assert.assertEquals;
 
 public class Sprint1Test extends Sprint1{
 
+    public void testUS05(){
+        Sprint1 sprint1 = new Sprint1();
+        Family f1 = new Family();
+        Person p1 = new Person();
+        Person p2 = new Person();
+        p1.setId("P01");
+        p1.setDead(true);
+        p1.setBirthDate("1", "JAN", "1975");
+        p1.setDeathDate("1", "JAN", "2000");
+
+        p2.setId("P02");
+        p2.setBirthDate("1", "FEB", "1975");
+        p2.setDead(false);
+        ArrayList<Person> ppl = new ArrayList<>();
+        ppl.add(p1);
+        ppl.add(p2);
+
+        f1.setDad(p1);
+        f1.setMom(p2);
+        f1.setMarriageDate("1", "JAN", "2001");
+        ArrayList<Family> fam = new ArrayList<>();
+        fam.add(f1);
+
+        asserEquals(false, sprint1.US05(ppl, fam));
+    }
+
     public void testUS07(){
         Sprint1 sprint1 = new Sprint1();
         Person p = new Person();
