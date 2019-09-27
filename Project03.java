@@ -62,6 +62,7 @@ class Project03
                 }
             }
         }
+        
         /*
             I'm sorry about having this entire family parser not be in a separate class like 
             how the indi's were in their own parser, but i wanted to avoid complicating things.
@@ -178,8 +179,6 @@ class Project03
                     family.getId(), (family.getMarriageDate()==null ? "NA" : simpleDateFormat.format(family.getMarriageDate())) , family.getDivorced(), family.getHusbandId() == null ? "NA" : family.getHusbandId() , family.getHusbandFullName() == null?"NA":family.getHusbandFullName(), family.getWifeId()== null ? "NA" : family.getWifeId(), family.getWifeFullName()== null ? "NA" : family.getWifeFullName(), family.getChildrenIds()== null ? "NA" : family.getChildrenIds());
             System.out.println();
         }
-
-
 
     }
 }   
