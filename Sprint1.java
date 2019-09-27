@@ -11,6 +11,124 @@ import static java.util.Calendar.*;
 import static java.util.Calendar.DATE;
 
 public class Sprint1 {
+	
+	/* Raj Mehta US01 implementation
+	 * Tests birth, death, marriage and divorce dates should not be after current date
+	 * @param person - ArrayList which contains all individuals
+	 * 		  fam - ArrayList which contains all families
+	 * @return errorCode - Integer value to denote what went wrong
+	 * 	0: all good, 1: birth date after current date, 2: death date,
+	 *  3: marriage date, 4: divorce date, 5: multiple
+	 */
+	public int US01(ArrayList<Person> person, ArrayList<Family> fam) {
+		Date currentDate = new Date();
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
+		int errorCode = 0;
+		
+		for(int i = 0; i < person.size(); i++) {
+			//Birth date
+			Date birthDate = person.get(i).getBirthDate();
+			
+			if(birthDate != null) {
+				if(currentDate.compareTo(birthDate) < 1) {
+					errorCode = 1;
+					System.out.println("ERROR: INDIVIDUAL: US01: Birthday " + s.format(birthDate) + " occurs in the future");
+				}
+			}
+			
+			//Death date
+			Date deathDate = person.get(i).getDeathDate();
+			if(deathDate != null) {
+				if(currentDate.compareTo(deathDate) < 1) {
+					if(errorCode == 0)
+						errorCode = 2;
+					else
+						errorCode = 5;
+					System.out.println("ERROR: INDIVIDUAL: US01: Death date " + s.format(deathDate) + " occurs in the future");
+				}
+			}
+		}
+		
+		for(int i = 0; i < fam.size(); i++) {
+			//Marriage date
+			Date mDate = fam.get(i).getMarriageDate();
+			
+			if(mDate != null) {
+				if(currentDate.compareTo(mDate) < 1) {
+					if(errorCode == 0)
+						errorCode = 3;
+					else
+						errorCode = 5;
+					System.out.println("ERROR: FAMILY: US01: Marriage date " + s.format(mDate) + " occurs in the future");
+				}
+			}
+			
+			//Divorce date
+			Date dDate = fam.get(i).getDivorceDate();
+			
+			if(dDate != null) {
+				if(currentDate.compareTo(dDate) < 1) {
+					if(errorCode == 0)
+						errorCode = 4;
+					else
+						errorCode = 5;
+					System.out.println("ERROR: FAMILY: US01: Divorce date " + s.format(dDate) + " occurs in the future");
+				}
+			}
+		}
+		return errorCode;
+	}
+	
+	/* Raj Mehta US02 implementation
+	 * Tests marriage and divorce date should not occur before birth date of spouse
+	 * @param person - ArrayList which contains all individuals
+	 * 		  fam - ArrayList which contains all families
+	 * @return errorCode - Integer value to denote what went wrong
+	 * 	0: all good
+	 * 	1: huband's birthdate after marriage date
+	 * 	2: wife's birthdate after marriage date
+	 *  3: both
+	 */
+	public int US02(ArrayList<Person> person, ArrayList<Family> fam) {
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
+		int errorCode = 0;
+		Date marriage, bd;
+		for(int i = 0; i < fam.size(); i++) {
+			marriage = fam.get(i).getMarriageDate();
+			if(marriage != null) {
+				// husband
+				for(int j = 0; j < person.size(); j++) {
+					if(fam.get(i).getHusbandId().equals(person.get(j).getId())) {
+						bd = person.get(j).getBirthDate();
+						if(bd != null) {
+							if(marriage.compareTo(bd) < 1) {
+								errorCode = 1;
+								System.out.println("ERROR: FAMILY: US02: Marriage date " + s.format(marriage) + " occurs before husband's birth date " + s.format(person.get(j).getBirthDate()));
+							}
+						}
+					}
+				}
+				
+				// wife
+				for(int j = 0; j < person.size(); j++) {
+					if(fam.get(i).getWifeId().equals(person.get(j).getId())) {
+						bd = person.get(j).getBirthDate();
+						if(bd != null) {
+							if(marriage.compareTo(bd) < 1) {
+								if(errorCode == 0)
+									errorCode = 2;
+								else
+									errorCode = 3;
+								System.out.println("ERROR: FAMILY: US02: Marriage date " + s.format(marriage) + " occurs before wife's birth date" + s.format(person.get(j).getBirthDate()));
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return errorCode;
+	}
 
     //Chris Rudel Sprint 1 US04/US05
     public boolean US05(ArrayList<Person> person, ArrayList<Family> family){
