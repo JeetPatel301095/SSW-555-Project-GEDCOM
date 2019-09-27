@@ -119,7 +119,7 @@ public class Sprint1 {
 									errorCode = 2;
 								else
 									errorCode = 3;
-								System.out.println("ERROR: FAMILY: US02: Marriage date " + s.format(marriage) + " occurs before wife's birth date" + s.format(person.get(j).getBirthDate()));
+								System.out.println("ERROR: FAMILY: US02: Marriage date " + s.format(marriage) + " occurs before wife's birth date " + s.format(person.get(j).getBirthDate()));
 							}
 						}
 					}
