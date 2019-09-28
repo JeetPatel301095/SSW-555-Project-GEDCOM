@@ -4,6 +4,8 @@ import java.io.*;
 
 class Project03
 {
+	public static boolean testing = true;
+	
     public static void main(String args[]) throws Exception
     {
         // int f=0;
@@ -62,6 +64,7 @@ class Project03
                 }
             }
         }
+        
         /*
             I'm sorry about having this entire family parser not be in a separate class like 
             how the indi's were in their own parser, but i wanted to avoid complicating things.
@@ -180,14 +183,21 @@ class Project03
         }
 
         Sprint1 sprint1 = new Sprint1();
+        sprint1.US01(Indi, fams);
+        sprint1.US02(Indi, fams);
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
         sprint1.US03(Indi);
         sprint1.US06(Indi, fams);
-
-        // Sprint1Test test = new Sprint1Test();
-        // test.testUS07();
-        // test.testUS08();
-        // test.testUS05();
+        
+        if(testing) {
+	        Sprint1Test test = new Sprint1Test();
+	        test.testUS01();
+	        test.testUS02();
+	        test.testUS07();
+	        test.testUS08();
+	        test.testUS05();
+	        test.testUS04();
+        }
     }
 }   

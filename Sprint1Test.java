@@ -5,6 +5,79 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class Sprint1Test extends Sprint1{
+	
+	public void testUS01() {
+		Sprint1 sprint1 = new Sprint1();
+		Person p1 = new Person();
+		p1.setBirthDate("1", "JAN", "2021");
+		Person p2 = new Person();
+		p2.setDeathDate("1", "JAN", "2021");
+		Family f1 = new Family();
+		f1.setMarriageDate("1", "JAN", "2021");
+		Family f2 = new Family();
+		f2.setDivorceDate("1", "JAN", "2021");
+		
+		ArrayList<Person> person = new ArrayList<Person>();
+		ArrayList<Family> fam = new ArrayList<Family>();
+		assertEquals(0, sprint1.US01(person, fam));
+		person.add(p1);
+		assertEquals(1, sprint1.US01(person, fam));
+		person.set(0, p2);
+		assertEquals(2, sprint1.US01(person, fam));
+		person.remove(0);
+		fam.add(f1);
+		assertEquals(3, sprint1.US01(person, fam));
+		fam.set(0, f2);
+		assertEquals(4, sprint1.US01(person, fam));
+		person.add(p1);
+		assertEquals(5, sprint1.US01(person, fam));
+		
+	}
+	
+	public void testUS02() {
+		Sprint1 sprint1 = new Sprint1();
+		Person p1 = new Person();
+		p1.setId("p1");
+		p1.setBirthDate("1", "JAN", "2018");
+		Person p2 = new Person();
+		p2.setId("p2");
+		Family f1 = new Family();
+		f1.setDad(p1);
+		f1.setMom(p2);
+		f1.setMarriageDate("1", "JAN", "2017");
+		ArrayList<Person> person = new ArrayList<Person>();
+		ArrayList<Family> fam = new ArrayList<Family>();
+		assertEquals(0, sprint1.US02(person, fam));
+		person.add(p1);
+		person.add(p2);
+		fam.add(f1);
+		assertEquals(1, sprint1.US02(person, fam));
+		p2.setBirthDate("1", "JAN", "2018");
+		assertEquals(3, sprint1.US02(person, fam));
+		p1.setBirthDate("1", "JAN", "2016");
+		assertEquals(2, sprint1.US02(person, fam));
+	}
+
+	public void testUS04(){
+	    Sprint1 sprint1 = new Sprint1();
+	    Family f1 = new Family();
+	    Person p1 = new Person();
+	    Person p2 = new Person();
+	    p1.setId("P01");
+	    p2.setId("P02");
+	    f1.setId("F01");
+	    f1.setDad(p1);
+	    f1.setMom(p2);
+	    f1.setMarriageDate("1", "JAN", "2000");
+	    f1.setDivorced(true);
+	    f1.setDivorceDate("1", "JAN", "1995");
+	    ArrayList<Family> fam = new ArrayList<>();
+	    fam.add(f1);
+	    assertEquals(false, sprint1.US04(fam));
+	    f1.setDivorceDate("1", "JAN", "2001");
+	    assertEquals(true, sprint1.US04(fam));
+
+    }
 
     public void testUS05(){
         Sprint1 sprint1 = new Sprint1();
@@ -31,6 +104,8 @@ public class Sprint1Test extends Sprint1{
         fam.add(f1);
 
         assertEquals(false, sprint1.US05(ppl, fam));
+        p1.setDeathDate("1", "JAN", "2002");
+        assertEquals(true, sprint1.US05(ppl, fam));
     }
 
     public void testUS07(){
