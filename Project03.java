@@ -195,6 +195,7 @@ class Project03
 	        test.testUS07();
 	        test.testUS08();
 	        test.testUS05();
+	        test.testUS04();
         }
     }
 }   
