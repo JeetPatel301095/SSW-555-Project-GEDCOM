@@ -182,10 +182,12 @@ class Project03
         Sprint1 sprint1 = new Sprint1();
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
+        sprint1.US03(Indi);
+        sprint1.US06(Indi, fams);
 
-        Sprint1Test test = new Sprint1Test();
-        test.testUS07();
-        test.testUS08();
-        test.testUS05();
+        // Sprint1Test test = new Sprint1Test();
+        // test.testUS07();
+        // test.testUS08();
+        // test.testUS05();
     }
 }   

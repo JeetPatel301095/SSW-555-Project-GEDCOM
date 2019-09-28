@@ -133,4 +133,74 @@ public class Sprint1 {
         cal.setTime(date);
         return cal;
     }
+
+    //Jeet Patel Sprint 1 US03/US06
+    public void US03(ArrayList<Person> a)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for(Person b:a)
+        {
+            if(b.getDead())
+            {
+                Date birt = b.getBirthDate();
+                Date deat = b.getDeathDate();
+                if(birt.compareTo(deat)>0)
+                    System.out.println("ERROR: INDIVIDUAL: US03: "+b.getId()+": Died "+simpleDateFormat.format(deat)+" before born "+simpleDateFormat.format(birt));
+            }
+        }
+    }
+
+    public void US06(ArrayList<Person> person, ArrayList<Family> family)
+    {
+        int f=0;
+        int m=0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for(Family fam: family){
+            f=0;
+            m=0;
+            String dad = fam.getHusbandId();
+            String mom = fam.getWifeId();
+            boolean dadDead = false;
+            Date dadDeathDate = null;
+            boolean momDead = false;
+            Date momDeathDate = null;
+            for(Person p: person){
+                if(p.getId().equals(dad)){
+                    dadDead = p.getDead();
+                    if(dadDead){
+                        dadDeathDate = p.getDeathDate();
+                    }
+                }
+                if(p.getId().equals(mom)){
+                    momDead = p.getDead();
+                    if(momDead){
+                        momDeathDate = p.getDeathDate();
+                    }
+                }
+            }
+            Date dDate = fam.getDivorceDate();
+            if(dadDeathDate == null && !dadDead){
+                f=1;
+            }
+            if(momDeathDate == null && !momDead){
+                m=1;
+            }
+            if(dDate==null);
+            else
+            {
+                if(f==0)
+                {
+                    if(dadDeathDate.before(dDate)){
+                        System.out.println("ERROR: FAMILY: US06 " + fam.getId() + " Divorced " + simpleDateFormat.format(fam.getDivorceDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));   
+                    }
+                }
+                if(m==0)
+                {
+                    if(momDeathDate.before(dDate)){
+                        System.out.println("ERROR: FAMILY: US06 " + fam.getId() + " Divorced " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));                
+                    }
+                }
+            }
+        }
+    }
 }
