@@ -130,8 +130,48 @@ public class Sprint1 {
 		return errorCode;
 	}
 
-    //Chris Rudel Sprint 1 US04/US05
-    public boolean US05(ArrayList<Person> person, ArrayList<Family> family){
+    /*
+    *   Christopher Rudel
+    *   Test US04
+    *   Checks that the divorce date does not occur before the marriage date
+    *   @param family - an array of families to check
+    *   @return - if the family's divorce date is after the marriage date -> true
+    *             if the family's divorce date is before the marriage date -> false
+     */
+    public boolean US04(ArrayList<Family> family){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for(Family fam: family){
+            if(!fam.getDivorced()){ //If divorced, it will skip the return statement
+                return true;
+            }
+            Date mDate = fam.getMarriageDate();
+            Date dDate = fam.getDivorceDate();
+            if(mDate == null){
+                System.out.println("ERROR: No marriage date available for family: " + fam.getId());
+                return true;
+            }
+            if(dDate == null){
+                System.out.println("ERROR: No divorce date available for divorced family: " + fam.getId());
+                return true;
+            }
+            if(dDate.before(mDate)){
+                System.out.println("ERROR: FAMILY: US04: " + fam.getId() + ": Divorced " + simpleDateFormat.format(dDate) + " before married " + simpleDateFormat.format(mDate));
+                return false;
+            }
+        }
+
+	    return true;
+    }
+    /*
+     *   Christopher Rudel
+     *   Test US05
+     *   Checks that the marriage date occurs before either spouse dies
+     *   @param people - an array of individuals
+     *          family - an array of families to check
+     *   @return - if the death date of both the husband or wife is after the marriage date -> true
+     *             if the death date of either the husband or wife is before the marriage date -> false
+     */
+    public boolean US05(ArrayList<Person> people, ArrayList<Family> family){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Family fam: family){
             String dad = fam.getHusbandId();
@@ -140,7 +180,7 @@ public class Sprint1 {
             Date dadDeathDate = null;
             boolean momDead = false;
             Date momDeathDate = null;
-            for(Person p: person){
+            for(Person p: people){
                 if(p.getId().equals(dad)){
                     dadDead = p.getDead();
                     if(dadDead){
@@ -167,14 +207,17 @@ public class Sprint1 {
                 System.out.println("ERROR: No marriage date available for the family");
                 return true;
             }
-
-            if(dadDeathDate.before(mDate)){
-                System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
-                return false;
+            if(dadDead) {
+                if (dadDeathDate.before(mDate)) {
+                    System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
+                    return false;
+                }
             }
-            if(momDeathDate.before(mDate)){
-                System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
-                return false;
+            if(momDead) {
+                if (momDeathDate.before(mDate)) {
+                    System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
+                    return false;
+                }
             }
 
         }
