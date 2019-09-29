@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = true;
+	public static boolean testing = false;
 	
     public static void main(String args[]) throws Exception
     {
