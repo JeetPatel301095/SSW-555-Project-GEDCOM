@@ -70,7 +70,7 @@ public class Sprint1Test extends Sprint1{
 		person.add(p1);
 		assertEquals(false,sprint1.US03(person));
 		p1.setDeathDate("31", "DEC", "2048");
-		assertEquals(true,sprint1.US03(person))
+		assertEquals(true,sprint1.US03(person));
     }
 
 	public void testUS04(){

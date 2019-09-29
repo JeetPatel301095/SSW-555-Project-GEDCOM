@@ -198,6 +198,8 @@ class Project03
 	        test.testUS08();
 	        test.testUS05();
 	        test.testUS04();
+	        test.testUS03();
+	        test.testUS06();
         }
     }
 }   
