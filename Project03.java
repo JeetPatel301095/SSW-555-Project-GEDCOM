@@ -189,7 +189,8 @@ class Project03
         sprint1.US08(fams, Indi);
         sprint1.US03(Indi);
         sprint1.US06(Indi, fams);
-        
+        sprint1.US04(fams);
+        sprint1.US05(Indi, fams);
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
 	        test.testUS01();
