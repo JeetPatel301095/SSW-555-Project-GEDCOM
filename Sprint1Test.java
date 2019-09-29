@@ -57,6 +57,21 @@ public class Sprint1Test extends Sprint1{
 		p1.setBirthDate("1", "JAN", "2016");
 		assertEquals(2, sprint1.US02(person, fam));
 	}
+	
+	public void testUS03()
+    {
+    	Sprint1 sprint1 = new Sprint1();
+    	Person p1 = new Person();
+		p1.setId("p1");
+		p1.setBirthDate("1", "JAN", "2018");
+		p1.setDeathDate("31","DEC","2016");
+		ArrayList<Person> person = new ArrayList<Person>();
+		assertEquals(true,sprint1.US03(person));
+		person.add(p1);
+		assertEquals(false,sprint1.US03(person));
+		p1.setDeathDate("31", "DEC", "2048");
+		assertEquals(true,sprint1.US03(person))
+    }
 
 	public void testUS04(){
 	    Sprint1 sprint1 = new Sprint1();
@@ -107,7 +122,38 @@ public class Sprint1Test extends Sprint1{
         p1.setDeathDate("1", "JAN", "2002");
         assertEquals(true, sprint1.US05(ppl, fam));
     }
+    
+    public void testUS06()
+    {
+    	Sprint1 sprint1 = new Sprint1();
+        Family f1 = new Family();
+        Person p1 = new Person();
+        Person p2 = new Person();
+        p1.setId("P01");
+        p1.setDead(true);
+        p1.setBirthDate("1", "JAN", "1975");
+        p1.setDeathDate("1", "JAN", "2000");
 
+        p2.setId("P02");
+        p2.setBirthDate("1", "FEB", "1975");
+        p2.setDead(false);
+        ArrayList<Person> person = new ArrayList<>();
+        person.add(p1);
+        person.add(p2);
+
+        f1.setDad(p1);
+        f1.setMom(p2);
+        f1.setId("F1");
+        f1.setMarriageDate("1", "JAN", "1997");
+        f1.setDivorced(true);
+        f1.setDivorceDate("1","JAN", "2002");
+        ArrayList<Family> fam = new ArrayList<>();
+        fam.add(f1);
+
+        assertEquals(false, sprint1.US06(person, fam));
+        p1.setDeathDate("1", "JAN", "2003");
+        assertEquals(true, sprint1.US06(person, fam));
+    }
     public void testUS07(){
         Sprint1 sprint1 = new Sprint1();
         Person p = new Person();
@@ -157,4 +203,6 @@ public class Sprint1Test extends Sprint1{
         families2.add(fam2);
         assertEquals(false, sprint1.US08(families2, list2));
     }
+    
+    
 }
