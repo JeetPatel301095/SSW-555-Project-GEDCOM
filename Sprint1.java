@@ -142,21 +142,21 @@ public class Sprint1 {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Family fam: family){
             if(!fam.getDivorced()){ //If divorced, it will skip the return statement
-                return true;
+                continue;
             }
             Date mDate = fam.getMarriageDate();
             Date dDate = fam.getDivorceDate();
             if(mDate == null){
-                System.out.println("ERROR: No marriage date available for family: " + fam.getId());
-                return true;
+                System.out.println("ERROR: US04: No marriage date available for family: " + fam.getId());
+                continue;
             }
             if(dDate == null){
-                System.out.println("ERROR: No divorce date available for divorced family: " + fam.getId());
-                return true;
+                System.out.println("ERROR: US04: No divorce date available for divorced family: " + fam.getId());
+                continue;
             }
             if(dDate.before(mDate)){
                 System.out.println("ERROR: FAMILY: US04: " + fam.getId() + ": Divorced " + simpleDateFormat.format(dDate) + " before married " + simpleDateFormat.format(mDate));
-                return false;
+                continue;
             }
         }
 
@@ -196,27 +196,27 @@ public class Sprint1 {
             }
             Date mDate = fam.getMarriageDate();
             if(dadDeathDate == null && dadDead){
-                System.out.println("ERROR: No death date available for father");
-                return true;
+                System.out.println("ERROR: US05: No death date available for father");
+                continue;
             }
             if(momDeathDate == null && momDead){
-                System.out.println("ERROR: No death date available for mother");
-                return true;
+                System.out.println("ERROR: US05: No death date available for mother");
+                continue;
             }
             if(mDate == null){
-                System.out.println("ERROR: No marriage date available for the family");
-                return true;
+                System.out.println("ERROR: US05: No marriage date available for the family");
+                continue;
             }
             if(dadDead) {
                 if (dadDeathDate.before(mDate)) {
                     System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
-                    return false;
+                    continue;
                 }
             }
             if(momDead) {
                 if (momDeathDate.before(mDate)) {
                     System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
-                    return false;
+                    continue;
                 }
             }
 
