@@ -185,21 +185,23 @@ class Project03
         Sprint1 sprint1 = new Sprint1();
         sprint1.US01(Indi, fams);
         sprint1.US02(Indi, fams);
+        sprint1.US03(Indi);
+        sprint1.US04(fams);
+        sprint1.US05(Indi, fams);
+        sprint1.US06(Indi, fams);
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
-        sprint1.US03(Indi);
-        sprint1.US06(Indi, fams);
         
-        if(testing) {
-	        Sprint1Test test = new Sprint1Test();
-	        test.testUS01();
-	        test.testUS02();
-	        test.testUS07();
-	        test.testUS08();
-	        test.testUS05();
-	        test.testUS04();
-	        test.testUS03();
-	        test.testUS06();
-        }
+        // if(testing) {
+	    //     Sprint1Test test = new Sprint1Test();
+	    //     test.testUS01();
+	    //     test.testUS02();
+	    //     test.testUS07();
+	    //     test.testUS08();
+	    //     test.testUS05();
+	    //     test.testUS04();
+	    //     test.testUS03();
+	    //     test.testUS06();
+        // }
     }
 }   

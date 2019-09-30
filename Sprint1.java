@@ -140,27 +140,28 @@ public class Sprint1 {
      */
     public boolean US04(ArrayList<Family> family){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        int f=0;
         for(Family fam: family){
             if(!fam.getDivorced()){ //If divorced, it will skip the return statement
-                return true;
+                continue;
             }
             Date mDate = fam.getMarriageDate();
             Date dDate = fam.getDivorceDate();
             if(mDate == null){
                 System.out.println("ERROR: No marriage date available for family: " + fam.getId());
-                return true;
             }
             if(dDate == null){
                 System.out.println("ERROR: No divorce date available for divorced family: " + fam.getId());
-                return true;
             }
             if(dDate.before(mDate)){
                 System.out.println("ERROR: FAMILY: US04: " + fam.getId() + ": Divorced " + simpleDateFormat.format(dDate) + " before married " + simpleDateFormat.format(mDate));
-                return false;
+                f=1;
             }
         }
-
-	    return true;
+        if(f==0)
+	        return true;
+        else
+            return false;
     }
     /*
      *   Christopher Rudel
@@ -172,6 +173,7 @@ public class Sprint1 {
      *             if the death date of either the husband or wife is before the marriage date -> false
      */
     public boolean US05(ArrayList<Person> people, ArrayList<Family> family){
+        int f=0;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for(Family fam: family){
             String dad = fam.getHusbandId();
@@ -197,31 +199,30 @@ public class Sprint1 {
             Date mDate = fam.getMarriageDate();
             if(dadDeathDate == null && dadDead){
                 System.out.println("ERROR: No death date available for father");
-                return true;
             }
             if(momDeathDate == null && momDead){
                 System.out.println("ERROR: No death date available for mother");
-                return true;
             }
             if(mDate == null){
                 System.out.println("ERROR: No marriage date available for the family");
-                return true;
             }
             if(dadDead) {
                 if (dadDeathDate.before(mDate)) {
                     System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
-                    return false;
+                    f=1;
                 }
             }
             if(momDead) {
                 if (momDeathDate.before(mDate)) {
                     System.out.println("ERROR: FAMILY: US05 " + fam.getId() + " Married " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
-                    return false;
+                    f=1;
                 }
             }
-
         }
-        return true;
+        if(f==0)
+            return true;
+        else
+            return false;
     }
 
     //Xueshi Wang Sprint 1 US07/US08
@@ -307,7 +308,7 @@ public class Sprint1 {
                 Date deat = b.getDeathDate();
                 if(birt.compareTo(deat)>0)
                 {
-                	System.out.println("ERROR: INDIVIDUAL: US03: "+b.getId()+": Died "+simpleDateFormat.format(deat)+" before born "+simpleDateFormat.format(birt));
+                	System.out.println("ERROR: INDIVIDUAL: US03: Died "+simpleDateFormat.format(deat)+" before born "+simpleDateFormat.format(birt));
                 	return false;
                 }
             }
@@ -356,14 +357,14 @@ public class Sprint1 {
                 if(f==0)
                 {
                     if(dadDeathDate.before(dDate)){
-                        System.out.println("ERROR: FAMILY: US06 " + fam.getId() + " Divorced " + simpleDateFormat.format(fam.getDivorceDate()) + " after husband's (" + dad + ") death on " + simpleDateFormat.format(dadDeathDate));
+                        System.out.println("ERROR: FAMILY: US06 : Divorced " + simpleDateFormat.format(fam.getDivorceDate()) + " after husband's death on " + simpleDateFormat.format(dadDeathDate));
                         return false;
                     }
                 }
                 if(m==0)
                 {
                     if(momDeathDate.before(dDate)){
-                        System.out.println("ERROR: FAMILY: US06 " + fam.getId() + " Divorced " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's (" + mom + ") death on " + simpleDateFormat.format(momDeathDate));
+                        System.out.println("ERROR: FAMILY: US06 : Divorced " + simpleDateFormat.format(fam.getMarriageDate()) + " after wife's death on " + simpleDateFormat.format(momDeathDate));
                         return false;
                     }
                 }
