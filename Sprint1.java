@@ -148,16 +148,6 @@ public class Sprint1 {
             Date mDate = fam.getMarriageDate();
             Date dDate = fam.getDivorceDate();
             if(mDate == null){
-<<<<<<< HEAD
-                System.out.println("ERROR: No marriage date available for family: " + fam.getId());
-            }
-            if(dDate == null){
-                System.out.println("ERROR: No divorce date available for divorced family: " + fam.getId());
-            }
-            if(dDate.before(mDate)){
-                System.out.println("ERROR: FAMILY: US04: " + fam.getId() + ": Divorced " + simpleDateFormat.format(dDate) + " before married " + simpleDateFormat.format(mDate));
-                f=1;
-=======
                 System.out.println("ERROR: US04: No marriage date available for family: " + fam.getId());
                 continue;
             }
@@ -167,8 +157,8 @@ public class Sprint1 {
             }
             if(dDate.before(mDate)){
                 System.out.println("ERROR: FAMILY: US04: " + fam.getId() + ": Divorced " + simpleDateFormat.format(dDate) + " before married " + simpleDateFormat.format(mDate));
+                f=1;
                 continue;
->>>>>>> 70b68d945329887e840a2e7346fc7d3cae271ace
             }
         }
         if(f==0)
