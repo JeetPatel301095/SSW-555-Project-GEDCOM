@@ -242,7 +242,7 @@ public class Sprint1 {
             if(p.getDead()){
                 Date deathDate = p.getDeathDate();
                 Date birthDate = p.getBirthDate();
-                if(calculateYear(birthDate, deathDate) > 150){
+                if(HelperMethods.calculateYear(birthDate, deathDate) > 150){
                     res = false;
                     System.out.println("ERROR: INDIVIDUAL: US07: "+p.getId()+": More than 150 years old at death. Birth date "+simpleDateFormat.format(p.getBirthDate())+" Death date "+simpleDateFormat.format(p.getDeathDate()));
                 }
@@ -269,7 +269,7 @@ public class Sprint1 {
                                 System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + simpleDateFormat.format(p.getBirthDate()) + " before marriage on " + simpleDateFormat.format(fam.getMarriageDate()));
                             }
                             if (fam.getDivorced()) {
-                                if (calculateMonth(fam.getDivorceDate(),p.getBirthDate()) > 9) {
+                                if (HelperMethods.calculateMonth(fam.getDivorceDate(),p.getBirthDate()) > 9) {
                                     res = false;
                                     System.out.println("ANOMALY: FAMILY: US08: " + fam.getId() + "Child " + p.getId() + " born " + simpleDateFormat.format(p.getBirthDate()) + " after divorce on(more than 9 months) " + simpleDateFormat.format(fam.getDivorceDate()));
                                 }
@@ -280,29 +280,6 @@ public class Sprint1 {
             }
         }
         return res;
-    }
-
-    public int calculateMonth(Date start, Date end){
-        YearMonth m1 = YearMonth.from(start.toInstant().atZone(ZoneId.of("UTC")));
-        YearMonth m2 = YearMonth.from(end.toInstant().atZone(ZoneId.of("UTC")));
-
-        return (int)m1.until(m2, ChronoUnit.MONTHS) + 1;
-    }
-
-    public int calculateYear(Date start, Date end){
-        Calendar a = getCalendar(start);
-        Calendar b = getCalendar(end);
-        int diff = b.get(YEAR) - a.get(YEAR);
-        if (a.get(MONTH) > b.get(MONTH) ||
-                (a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
-            diff--;
-        }
-        return diff;
-    }
-    public static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.US);
-        cal.setTime(date);
-        return cal;
     }
 
     //Jeet Patel Sprint 1 US03/US06

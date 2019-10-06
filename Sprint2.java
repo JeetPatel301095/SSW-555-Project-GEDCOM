@@ -44,7 +44,7 @@ public class Sprint2 {
 							}
 							if(husb.getDead()) {
 								if(husbDeath.compareTo(c.getBirthDate()) < 1) {
-									if(calculateMonth(husbDeath, c.getBirthDate()) > 9) {
+									if(HelperMethods.calculateMonth(husbDeath, c.getBirthDate()) > 9) {
 										System.out.println("ERROR: INDIVIDUAL: US09: Child " + c.getId() + " born after 9 months of father's death");
 										if(errorCode == 1) {
 											errorCode = 3;
@@ -70,14 +70,14 @@ public class Sprint2 {
 		for(Family f: family) {
 			for(Person p: person) {
 				if(f.getHusbandId().equals(p.getId())) {
-					if(calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
+					if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
 						System.out.println("ERROR: FAMILY: US10: Husband got married before age of 14 in family " + f.getId());
 						errorCode = 1;
 					}
 				}
 				else {
 					if(f.getWifeId().equals(p.getId())) {
-						if(calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
+						if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
 							System.out.println("ERROR: FAMILY: US10: Wife got married before age of 14 in family " + f.getId());
 							if(errorCode == 1) {
 								errorCode = 3;
