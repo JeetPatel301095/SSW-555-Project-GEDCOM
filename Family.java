@@ -70,6 +70,13 @@ class Family
             return this.dad.getId();
         }
     }
+    public String getHusbandLastName(){
+        if(this.dad == null){
+            return "NA";
+        }else{
+            return this.dad.getLastName();
+        }
+    }
     public String getHusbandFullName()
     {
         if(this.dad == null){

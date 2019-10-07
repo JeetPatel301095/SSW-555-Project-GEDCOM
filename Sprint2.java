@@ -93,4 +93,36 @@ public class Sprint2 {
 		
 		return errorCode;
 	}
+
+	public boolean US15(ArrayList<Family> family){
+		boolean res = true;
+		int count = 0;
+		for(Family fam:family){
+			count = fam.getChildrenIds().size();
+			if(count>=15) {
+				res = false;
+				System.out.println("ERROR: FAMILY: US15: "+fam.getId()+ " has more than 15 siblings. ");
+			}
+		}
+		return res;
+	}
+
+	public boolean US16(ArrayList<Family> family, ArrayList<Person> person){
+		boolean res = true;
+		int count = 0;
+		String temp="";
+		for(Family fam:family){
+			temp = fam.getHusbandLastName();
+			for(Person p:person){
+				if(fam.getChildrenIds().contains(p.getId())){
+					res = temp.equals(p.getLastName());
+					if(!res){
+						System.out.println("ERROR: FAMILY: US16: "+fam.getId()+ " Male family members do not have the same last names. ");
+						break;
+					}
+				}
+			}
+		}
+		return res;
+	}
 }
