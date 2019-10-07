@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = false;
+	public static boolean testing = true;
 	
     public static void main(String args[]) throws Exception
     {
@@ -90,53 +90,41 @@ class Project03
                     boolean nextLineMarried = false;
                     boolean nextLineDivorced = false;
                     boolean divorced = false;
-                    while(gedComStrings.get(famI + count).charAt(0) == '1' || gedComStrings.get(famI + count).charAt(0) == '2')
-                    {
+                    while ((famI+count < gedComStrings.size())&&(gedComStrings.get(famI + count).charAt(0) == '1' || gedComStrings.get(famI + count).charAt(0) == '2')) {
                         String nextLineWords[] = gedComStrings.get(famI + count).split(" ");
-                        if(nextLineWords[1].equals("HUSB"))
-                        {
-                            for(Person hubby : Indi)
-                            {
-                                if(hubby.getId().equals(nextLineWords[2]))
-                                {
+                        if (nextLineWords[1].equals("HUSB")) {
+                            for (Person hubby : Indi) {
+                                if (hubby.getId().equals(nextLineWords[2])) {
                                     tempFam.setDad(hubby);
                                 }
                             }
                         }
-                        if(nextLineWords[1].equals("WIFE"))
-                        {
-                            for(Person wifey : Indi)
-                            {
-                                if(wifey.getId().equals(nextLineWords[2]))
-                                {
+                        if (nextLineWords[1].equals("WIFE")) {
+                            for (Person wifey : Indi) {
+                                if (wifey.getId().equals(nextLineWords[2])) {
                                     tempFam.setMom(wifey);
                                 }
                             }
                         }
-                        if(nextLineWords[1].equals("CHIL"))
-                        {
-                            
+                        if (nextLineWords[1].equals("CHIL")) {
+
                             tempFam.addChild(nextLineWords[2]);
                         }
 
-                        if(nextLineWords[1].equals("MARR"))
-                        {
+                        if (nextLineWords[1].equals("MARR")) {
                             nextLineMarried = true;
                         }
-                        if(nextLineMarried && nextLineWords[0].equals("2"))
-                        {
-                            String date = nextLineWords[2] + " " +  nextLineWords[3] + " " + nextLineWords[4];
+                        if (nextLineMarried && nextLineWords[0].equals("2")) {
+                            String date = nextLineWords[2] + " " + nextLineWords[3] + " " + nextLineWords[4];
                             tempFam.setMarriageDate(nextLineWords[2], nextLineWords[3], nextLineWords[4]);
                             nextLineMarried = false;
                         }
-                        if(nextLineWords[1].equals("DIV"))
-                        {
+                        if (nextLineWords[1].equals("DIV")) {
                             nextLineDivorced = true;
                             divorced = true;
                         }
-                        if(nextLineDivorced && nextLineWords[0].equals("2"))
-                        {
-                            String date = nextLineWords[2] + " " + nextLineWords[3] +  " " + nextLineWords[4];
+                        if (nextLineDivorced && nextLineWords[0].equals("2")) {
+                            String date = nextLineWords[2] + " " + nextLineWords[3] + " " + nextLineWords[4];
                             tempFam.setDivorceDate(nextLineWords[2], nextLineWords[3], nextLineWords[4]);
                             tempFam.setDivorced(true);
                             nextLineDivorced = false;
@@ -144,6 +132,7 @@ class Project03
 
                         count++;
                     }
+
 //                    if(!divorced){
 //                        tempFam.setDivorceDate("NA");
 //                    }
@@ -192,16 +181,24 @@ class Project03
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
 
+        //sprint 02 user stories
+        Sprint2 sprint2 = new Sprint2();
+        sprint2.US15(fams);
+        sprint2.US16(fams, Indi);
         if(testing) {
-	        Sprint1Test test = new Sprint1Test();
-	        test.testUS01();
-	        test.testUS02();
-	        test.testUS07();
-	        test.testUS08();
-	        test.testUS05();
-	        test.testUS04();
-	        test.testUS03();
-	        test.testUS06();
+//	        Sprint1Test test = new Sprint1Test();
+//	        test.testUS01();
+//	        test.testUS02();
+//	        test.testUS07();
+//	        test.testUS08();
+//	        test.testUS05();
+//	        test.testUS04();
+//	        test.testUS03();
+//	        test.testUS06();
+
+	        Sprint02Test sprint02Test = new Sprint02Test();
+            sprint02Test.testUS15();
+	        sprint02Test.testUS16();
         }
     }
 }   
