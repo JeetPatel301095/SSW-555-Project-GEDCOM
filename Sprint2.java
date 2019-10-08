@@ -95,9 +95,75 @@ public class Sprint2 {
 	}
 
 	//Chris Rudel US11 and US12
-	public boolean US12(ArrayList<Person> people, ArrayList<Family> fams){
+	/* Chris Rudel US12
+	 * Checks to ensure mother is < 60 years older than child and father is < 80
+	 * @param people - ArrayList which contains all individuals
+	 * 		  fams - ArrayList which contains all families
+	 * @return
+	 * 	0: no errors
+	 * 	1: husband is too old for child
+	 * 	2: wife is too old for child
+	 *  3: error, missing information
+	 */
+	public int US12(ArrayList<Person> people, ArrayList<Family> fams){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int retVal = 0;
+		for(Family fam: fams){
+			String dadId = fam.getHusbandId();
+			String momId = fam.getWifeId();
+			Person dad = null;
+			Person mom = null;
+			for(Person individ: people){
+				if(individ.getId().equals(dadId)){
+					dad = individ;
+				}
+				else if(individ.getId().equals(momId)){
+					mom = individ;
+				}
+			}
+			if(dad == null || mom == null){
+				System.out.println("Error: US12: Mom or dad not found");
+				return 3;
+			}
+			for(String childId: fam.getChildrenIds()){
+				Person child = null;
+				for(Person individ: people){
+					if(individ.getId().equals(childId)){
+						child = individ;
+					}
+				}
+				if(child == null){
+					System.out.println("Error: US12: Child with id: " + childId + " not found.");
+					return 3;
+				}
+				if(dad.getBirthDate() == null){
+					System.out.println("Error: US12: Dad with id: " + dad.getId() + " has no birthdate.");
+					return 3;
+				}
+				if(mom.getBirthDate() == null){
+					System.out.println("Error: US12: Mom with id: " + mom.getId() + " has no birthdate.");
+					return 3;
 
-		return false;
+				}
+				if(child.getBirthDate() == null){
+					System.out.println("Error: US12: Child with id: " + child.getId() + " has no birthdate.");
+					return 3;
+
+				}
+				if(HelperMethods.calculateYear(dad.getBirthDate(), child.getBirthDate()) > 80){
+					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Father's birth date: " +  simpleDateFormat.format(dad.getBirthDate()) + " more than 80 years past child birth date: " + simpleDateFormat.format(child.getBirthDate()));
+					retVal = 1;
+					continue;
+				}
+				else if(HelperMethods.calculateYear(mom.getBirthDate(), child.getBirthDate()) > 60){
+					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Mothers's birth date: " +  simpleDateFormat.format(mom.getBirthDate()) + " more than 60 years past child birth date: " + simpleDateFormat.format(child.getBirthDate()));
+					retVal = 2;
+					continue;
+				}
+			}
+
+		}
+		return retVal;
 	}
 
 	public boolean US15(ArrayList<Family> family){

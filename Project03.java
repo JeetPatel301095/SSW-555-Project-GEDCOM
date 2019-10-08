@@ -199,6 +199,7 @@ class Project03
 	        Sprint02Test sprint02Test = new Sprint02Test();
             sprint02Test.testUS15();
 	        sprint02Test.testUS16();
+	        sprint02Test.testUS12();
         }
     }
 }   
