@@ -94,6 +94,12 @@ public class Sprint2 {
 		return errorCode;
 	}
 
+	//Chris Rudel US11 and US12
+	public boolean US12(ArrayList<Person> people, ArrayList<Family> fams){
+
+		return false;
+	}
+
 	public boolean US15(ArrayList<Family> family){
 		boolean res = true;
 		int count = 0;
