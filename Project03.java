@@ -197,9 +197,17 @@ class Project03
 //	        test.testUS03();
 //	        test.testUS06();
 
+<<<<<<< HEAD
 	        // Sprint02Test sprint02Test = new Sprint02Test();
             // sprint02Test.testUS15();
 	        // sprint02Test.testUS16();
+=======
+	        Sprint02Test sprint02Test = new Sprint02Test();
+            sprint02Test.testUS15();
+	        sprint02Test.testUS16();
+            sprint02Test.testUS11();
+            sprint02Test.testUS12();
+>>>>>>> 82616fc522a395acac2bba2a1a8152fab09cc7aa
         }
     }
 }   
