@@ -94,6 +94,14 @@ public class Sprint2 {
 		return errorCode;
 	}
 
+	
+	public boolean US13(ArrayList<Family> fam, ArrayList<Person> indi)
+	{
+		System.out.println(fam);
+		return true;
+	}
+
+
 	public boolean US15(ArrayList<Family> family){
 		boolean res = true;
 		int count = 0;

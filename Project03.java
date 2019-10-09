@@ -183,6 +183,7 @@ class Project03
 
         //sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
+        sprint2.US13(fams, Indi);
         sprint2.US15(fams);
         sprint2.US16(fams, Indi);
         if(testing) {
@@ -196,9 +197,9 @@ class Project03
 //	        test.testUS03();
 //	        test.testUS06();
 
-	        Sprint02Test sprint02Test = new Sprint02Test();
-            sprint02Test.testUS15();
-	        sprint02Test.testUS16();
+	        // Sprint02Test sprint02Test = new Sprint02Test();
+            // sprint02Test.testUS15();
+	        // sprint02Test.testUS16();
         }
     }
 }   
