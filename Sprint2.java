@@ -94,9 +94,55 @@ public class Sprint2 {
 		return errorCode;
 	}
 
-	//Chris Rudel US11 and US12
+	/* Chris Rudel US11
+	 * Checks to ensure there is no bigamy in the families
+	 * @param fams - ArrayList which contains all families
+	 * @return
+	 * 	0: no errors
+	 * 	1: there is bigamy for a husband
+	 * 	2: bigamy for a wife
+	 *  3: error, missing information
+	 */
+	public int US11(ArrayList<Family> fams){
+		int retVal = 0;
+		for(int i=0; i<fams.size(); i++){
+			String currentFamID = fams.get(i).getId();
+			String dadID = fams.get(i).getHusbandId();
+			String momID = fams.get(i).getWifeId();
+			if(currentFamID == null || currentFamID.equals("")){
+				System.out.println("Error: US11: One of the families has no ID");
+				return 3;
+			}
+			if(dadID == null || dadID.equals("")){
+				System.out.println("Error: US11: One of the fathers has no ID");
+				return 3;
+			}
+			if(momID == null || momID.equals("")){
+				System.out.println("Error: US11: One of the mothers has no ID");
+				return 3;
+			}
+
+			for(int j=i; j<fams.size(); j++){
+				if(j==i){
+					continue;
+				}
+				String famCheck = fams.get(j).getId();
+				String dadCheck = fams.get(j).getHusbandId();
+				String momCheck = fams.get(j).getWifeId();
+				if(dadID.equals(dadCheck)){
+					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Father with ID: " + dadID + " is father of both families");
+					retVal = 1;
+				}
+				else if(momID.equals(momCheck)){
+					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Mother with ID: " + momID + " is mother of both families");
+					retVal = 2;
+				}
+			}
+		}
+		return retVal;
+	}
 	/* Chris Rudel US12
-	 * Checks to ensure mother is < 60 years older than child and father is < 80
+	 * Checks to ensure mother is < 60 years older than child and father is < 80 years older
 	 * @param people - ArrayList which contains all individuals
 	 * 		  fams - ArrayList which contains all families
 	 * @return
@@ -151,12 +197,12 @@ public class Sprint2 {
 
 				}
 				if(HelperMethods.calculateYear(dad.getBirthDate(), child.getBirthDate()) > 80){
-					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Father's birth date: " +  simpleDateFormat.format(dad.getBirthDate()) + " more than 80 years past child birth date: " + simpleDateFormat.format(child.getBirthDate()));
+					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Father's birth date: " +  simpleDateFormat.format(dad.getBirthDate()) + " more than 80 years past child " + childId + " birth date: " + simpleDateFormat.format(child.getBirthDate()));
 					retVal = 1;
 					continue;
 				}
 				else if(HelperMethods.calculateYear(mom.getBirthDate(), child.getBirthDate()) > 60){
-					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Mothers's birth date: " +  simpleDateFormat.format(mom.getBirthDate()) + " more than 60 years past child birth date: " + simpleDateFormat.format(child.getBirthDate()));
+					System.out.println("Error: FAMILY: US12: " + fam.getId() + ": Mothers's birth date: " +  simpleDateFormat.format(mom.getBirthDate()) + " more than 60 years past child " + childId + " birth date: " + simpleDateFormat.format(child.getBirthDate()));
 					retVal = 2;
 					continue;
 				}
