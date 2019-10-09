@@ -129,13 +129,14 @@ public class Sprint2 {
 				String famCheck = fams.get(j).getId();
 				String dadCheck = fams.get(j).getHusbandId();
 				String momCheck = fams.get(j).getWifeId();
-				if(dadID.equals(dadCheck)){
-					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Father with ID: " + dadID + " is father of both families");
-					retVal = 1;
-				}
-				else if(momID.equals(momCheck)){
-					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Mother with ID: " + momID + " is mother of both families");
-					retVal = 2;
+				if(!fams.get(i).getDivorced()) {
+					if (dadID.equals(dadCheck)) {
+						System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Father with ID: " + dadID + " is father of both families");
+						retVal = 1;
+					} else if (momID.equals(momCheck)) {
+						System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Mother with ID: " + momID + " is mother of both families");
+						retVal = 2;
+					}
 				}
 			}
 		}

@@ -36,6 +36,20 @@ public class Sprint02Test extends Sprint2{
         fam1.setMom(wife2);
         assertEquals(2, sprint2.US11(fams));
 
+        fam1.setMom(wife1);
+
+        Person wife3 = new Person();
+        Family fam3 = new Family();
+        wife3.setId("05");
+        fam3.setId("F03");
+        fam1.setDivorced(true);
+        fam3.setMom(wife3);
+        fam3.setDad(husband1);
+        fams.add(fam3);
+        assertEquals(0, sprint2.US11(fams)); //divorced, so husband has two wives
+        fam1.setDivorced(false);
+        assertEquals(1, sprint2.US11(fams));
+
     }
 
     public void testUS12(){
