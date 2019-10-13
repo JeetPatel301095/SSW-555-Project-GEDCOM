@@ -231,10 +231,10 @@ public class Sprint2 {
 		{
 			ArrayList<Person> children = new ArrayList<Person>();
 			ArrayList<String> a = fa.getChildrenIds();
-			// System.out.println(a);
+			
 			for(String e:a)
 			{
-				// System.out.println(e);
+				
 				for(Person we: indi)
 				{
 					if(e.equals(we.getId()))
@@ -261,7 +261,7 @@ public class Sprint2 {
 			{
 				for(int y=0; y<children.size();y++)
 				{
-					// System.out.println(children.get(y).getId());
+				
 					for(int z=y+1;z<children.size();z++)
 					{
 						long difference = (children.get(y).getBirthDate().getTime()-children.get(z).getBirthDate().getTime())/(86400000);
@@ -271,12 +271,12 @@ public class Sprint2 {
 						{
 							System.out.println("ERROR: FAMILY: US13: "+fa.getId()+ " has siblings spacing of less than 8 months and more than 2 days.");
 							err=false;
-							// System.out.println(children.get(y).getBirthDate()+" ,  "+children.get(z).getBirthDate()+"  , "+difference);
+				
 						}
 					}
 				}
 			}
-			// System.out.println(children);
+			
 		}
 		return err;
 	}
@@ -298,13 +298,11 @@ public class Sprint2 {
 			System.out.println(a);
 			for(String e:a)
 			{
-				// System.out.println(e);
 				for(Person we: ind)
 				{
 					if(e.equals(we.getId()))
 					{
 						children.add(we);
-						// System.out.println(we.getFirstName());
 						break;
 					}
 				}
@@ -316,7 +314,6 @@ public class Sprint2 {
 				{
 					String c1 = sdfo.format(children.get(i).getBirthDate());
 					String c2 = sdfo.format(children.get(j).getBirthDate());
-					// System.out.println(c1+"  , "+c2+"    ,   =  "+c2.compareTo(c1));
 					if(c1.equals(c2))
 					{
 						count++;

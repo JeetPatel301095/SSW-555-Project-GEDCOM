@@ -210,6 +210,8 @@ class Project03
 	        sprint02Test.testUS16();
             sprint02Test.testUS11();
             sprint02Test.testUS12();
+            sprint02Test.testUS13();
+            sprint02Test.testUS14();
         }
     }
 }   
