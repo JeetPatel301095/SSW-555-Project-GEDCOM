@@ -2,9 +2,66 @@ import junit.framework.*;
 
 import java.util.ArrayList;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class Sprint02Test extends Sprint2{
+	
+	@Test
+	public void testUS09() {
+		Sprint2 s2 = new Sprint2();
+		Person husb = new Person();
+		Person wife = new Person();
+		Person child = new Person();
+		Family fam = new Family();
+		husb.setId("p1");
+		wife.setId("p2");
+		child.setId("p3");
+		wife.setDead(true);
+		wife.setDeathDate("1", "1", "2015");
+		child.setBirthDate("2", "2", "2015");
+		fam.setDad(husb);
+		fam.setMom(wife);
+		fam.addChild(child.getId());
+		ArrayList<Person> person = new ArrayList<Person>();
+		person.add(husb);
+		person.add(wife);
+		person.add(child);
+		ArrayList<Family> family = new ArrayList<Family>();
+		family.add(fam);
+		assertEquals(1, s2.US09(person, family));
+		husb.setDead(true);
+		husb.setDeathDate("1", "1", "2014");
+		assertEquals(3, s2.US09(person, family));
+		wife.setDead(false);
+		assertEquals(2, s2.US09(person, family));
+	}
+	
+	@Test
+	public void testUS10() {
+		Sprint2 s2 = new Sprint2();
+		Person husb = new Person();
+		Person wife = new Person();
+		Family fam = new Family();
+		husb.setId("p1");
+		wife.setId("p2");
+		husb.setBirthDate("1", "1", "2000");
+		fam.setDad(husb);
+		fam.setMom(wife);
+		fam.setMarriageDate("1", "1", "2010");
+		fam.setId("f1");
+		ArrayList<Person> person = new ArrayList<Person>();
+		person.add(husb);
+		person.add(wife);
+		ArrayList<Family> family = new ArrayList<Family>();
+		family.add(fam);
+		assertEquals(1, s2.US10(person, family));
+		wife.setBirthDate("1", "1", "2000");
+		assertEquals(3, s2.US10(person, family));
+		husb.setBirthDate("1", "1", "1990");
+		assertEquals(2, s2.US10(person, family));
+	}
 
     public void testUS11() {
         Sprint2 sprint2 = new Sprint2();
@@ -35,6 +92,20 @@ public class Sprint02Test extends Sprint2{
         fam2.setDad(husband2);
         fam1.setMom(wife2);
         assertEquals(2, sprint2.US11(fams));
+
+        fam1.setMom(wife1);
+
+        Person wife3 = new Person();
+        Family fam3 = new Family();
+        wife3.setId("05");
+        fam3.setId("F03");
+        fam1.setDivorced(true);
+        fam3.setMom(wife3);
+        fam3.setDad(husband1);
+        fams.add(fam3);
+        assertEquals(0, sprint2.US11(fams)); //divorced, so husband has two wives
+        fam1.setDivorced(false);
+        assertEquals(1, sprint2.US11(fams));
 
     }
 
@@ -112,4 +183,5 @@ public class Sprint02Test extends Sprint2{
         fam.add(f1);
         assertEquals(false, sprint2.US16(fam, person));
     }
+    
 }

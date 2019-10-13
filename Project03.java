@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = true;
+	public static boolean testing = false;
 	
     public static void main(String args[]) throws Exception
     {
@@ -171,18 +171,22 @@ class Project03
             System.out.println();
         }
 
-        Sprint1 sprint1 = new Sprint1();
-        sprint1.US01(Indi, fams);
-        sprint1.US02(Indi, fams);
-        sprint1.US03(Indi);
-        sprint1.US04(fams);
-        sprint1.US05(Indi, fams);
-        sprint1.US06(Indi, fams);
-        sprint1.US07(Indi);
-        sprint1.US08(fams, Indi);
+//        Sprint1 sprint1 = new Sprint1();
+//        sprint1.US01(Indi, fams);
+//        sprint1.US02(Indi, fams);
+//        sprint1.US03(Indi);
+//        sprint1.US04(fams);
+//        sprint1.US05(Indi, fams);
+//        sprint1.US06(Indi, fams);
+//        sprint1.US07(Indi);
+//        sprint1.US08(fams, Indi);
 
         //sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
+
+        
+        sprint2.US09(Indi, fams);
+        sprint2.US10(Indi, fams);
         sprint2.US13(fams, Indi);
         sprint2.US14(fams,Indi);
         sprint2.US15(fams);
@@ -200,6 +204,8 @@ class Project03
 
 
 	        Sprint02Test sprint02Test = new Sprint02Test();
+	        sprint02Test.testUS09();
+	        sprint02Test.testUS10();
             sprint02Test.testUS15();
 	        sprint02Test.testUS16();
             sprint02Test.testUS11();

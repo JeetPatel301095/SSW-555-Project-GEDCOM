@@ -21,16 +21,19 @@ public class Sprint2 {
 					if(fam.getHusbandId().equals(husb.getId())) { // check if husband
 						if(husb.getDead()) {
 							husbDeath = husb.getDeathDate();
+							break;
 						}
 					}
-					else { // check if wife
+				}
+				
+				for(int j = 0; j < person.size(); j++) { // check if wife
 						wife = person.get(j);
 						if(fam.getWifeId().equals(wife.getId())) {
 							if(wife.getDead()) {
 								wifeDeath = wife.getDeathDate();
+								break;
 							}
 						}
-					}
 				}
 			
 				for(String child: children) { // find each children
@@ -70,27 +73,31 @@ public class Sprint2 {
 		for(Family f: family) {
 			for(Person p: person) {
 				if(f.getHusbandId().equals(p.getId())) {
-					if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
-						System.out.println("ERROR: FAMILY: US10: Husband got married before age of 14 in family " + f.getId());
-						errorCode = 1;
+					if(p.getBirthDate() != null) {
+						if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
+							System.out.println("ERROR: FAMILY: US10: Husband got married before age of 14 in family " + f.getId());
+							errorCode = 1;
+						}
 					}
 				}
 				else {
 					if(f.getWifeId().equals(p.getId())) {
-						if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
-							System.out.println("ERROR: FAMILY: US10: Wife got married before age of 14 in family " + f.getId());
-							if(errorCode == 1) {
-								errorCode = 3;
-							}
-							else {
-								errorCode = 2;
+						if(p.getBirthDate() != null) {
+							if(HelperMethods.calculateYear(p.getBirthDate(), f.getMarriageDate()) < 14) {
+								System.out.println("ERROR: FAMILY: US10: Wife got married before age of 14 in family " + f.getId());
+								if(errorCode == 1) {
+									errorCode = 3;
+								}
+								else {
+									errorCode = 2;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		
+
 		return errorCode;
 	}
 
@@ -129,13 +136,14 @@ public class Sprint2 {
 				String famCheck = fams.get(j).getId();
 				String dadCheck = fams.get(j).getHusbandId();
 				String momCheck = fams.get(j).getWifeId();
-				if(dadID.equals(dadCheck)){
-					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Father with ID: " + dadID + " is father of both families");
-					retVal = 1;
-				}
-				else if(momID.equals(momCheck)){
-					System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Mother with ID: " + momID + " is mother of both families");
-					retVal = 2;
+				if(!fams.get(i).getDivorced()) {
+					if (dadID.equals(dadCheck)) {
+						System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Father with ID: " + dadID + " is father of both families");
+						retVal = 1;
+					} else if (momID.equals(momCheck)) {
+						System.out.println("ERROR: FAMILY: US11: Families with IDs " + currentFamID + " and " + famCheck + ": Mother with ID: " + momID + " is mother of both families");
+						retVal = 2;
+					}
 				}
 			}
 		}
