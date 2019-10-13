@@ -184,30 +184,26 @@ class Project03
         //sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
         sprint2.US13(fams, Indi);
+        sprint2.US14(fams,Indi);
         sprint2.US15(fams);
         sprint2.US16(fams, Indi);
         if(testing) {
-//	        Sprint1Test test = new Sprint1Test();
-//	        test.testUS01();
-//	        test.testUS02();
-//	        test.testUS07();
-//	        test.testUS08();
-//	        test.testUS05();
-//	        test.testUS04();
-//	        test.testUS03();
-//	        test.testUS06();
+	        Sprint1Test test = new Sprint1Test();
+	        test.testUS01();
+	        test.testUS02();
+	        test.testUS07();
+	        test.testUS08();
+	        test.testUS05();
+	        test.testUS04();
+	        test.testUS03();
+	        test.testUS06();
 
-<<<<<<< HEAD
-	        // Sprint02Test sprint02Test = new Sprint02Test();
-            // sprint02Test.testUS15();
-	        // sprint02Test.testUS16();
-=======
+
 	        Sprint02Test sprint02Test = new Sprint02Test();
             sprint02Test.testUS15();
 	        sprint02Test.testUS16();
             sprint02Test.testUS11();
             sprint02Test.testUS12();
->>>>>>> 82616fc522a395acac2bba2a1a8152fab09cc7aa
         }
     }
 }   

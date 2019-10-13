@@ -211,7 +211,118 @@ public class Sprint2 {
 		}
 		return retVal;
 	}
->>>>>>> 82616fc522a395acac2bba2a1a8152fab09cc7aa
+	
+	/*
+	Jeet Patel US13
+	Siblings Spacing- Birthdays atleast 8 months or less than 2 days
+	*/
+	public boolean US13(ArrayList<Family> fam, ArrayList<Person> indi)
+	{
+		boolean err = true;
+		for(Family fa:fam)
+		{
+			ArrayList<Person> children = new ArrayList<Person>();
+			ArrayList<String> a = fa.getChildrenIds();
+			// System.out.println(a);
+			for(String e:a)
+			{
+				// System.out.println(e);
+				for(Person we: indi)
+				{
+					if(e.equals(we.getId()))
+					{
+						children.add(we);
+						break;
+					}
+				}
+			}
+			if(children.size()<=1)
+				return true;
+			if(children.size()==2)
+			{
+				long difference = (children.get(1).getBirthDate().getTime()-children.get(0).getBirthDate().getTime())/(86400000);
+				if(difference<0)
+					difference*=-1;
+				if((difference>2)&&(difference<244))
+				{
+					System.out.println("ERROR: FAMILY: US13: "+fa.getId()+ " has siblings spacing of less than 8 months and more than 2 days.");
+					err=false;
+				}
+			}
+        	else
+			{
+				for(int y=0; y<children.size();y++)
+				{
+					// System.out.println(children.get(y).getId());
+					for(int z=y+1;z<children.size();z++)
+					{
+						long difference = (children.get(y).getBirthDate().getTime()-children.get(z).getBirthDate().getTime())/(86400000);
+						if(difference<0)
+							difference*=-1;
+						if((difference>2)&&(difference<244))
+						{
+							System.out.println("ERROR: FAMILY: US13: "+fa.getId()+ " has siblings spacing of less than 8 months and more than 2 days.");
+							err=false;
+							// System.out.println(children.get(y).getBirthDate()+" ,  "+children.get(z).getBirthDate()+"  , "+difference);
+						}
+					}
+				}
+			}
+			// System.out.println(children);
+		}
+		return err;
+	}
+
+
+	/*
+	Jeet Patel US14
+	Multiple Births- No more than 5 siblings should be born at the same time
+	*/
+
+	public boolean US14(ArrayList<Family> fam, ArrayList<Person> ind)
+	{
+		SimpleDateFormat sdfo = new SimpleDateFormat("yyyy-MM-dd");
+		boolean err = true;
+		for(Family fa:fam)
+		{
+			ArrayList<Person> children = new ArrayList<Person>();
+			ArrayList<String> a = fa.getChildrenIds();
+			System.out.println(a);
+			for(String e:a)
+			{
+				// System.out.println(e);
+				for(Person we: ind)
+				{
+					if(e.equals(we.getId()))
+					{
+						children.add(we);
+						// System.out.println(we.getFirstName());
+						break;
+					}
+				}
+			}
+			int count=0;
+			for(int i=0;i<children.size();i++)
+			{
+				for(int j=i+1;j<children.size();j++)
+				{
+					String c1 = sdfo.format(children.get(i).getBirthDate());
+					String c2 = sdfo.format(children.get(j).getBirthDate());
+					// System.out.println(c1+"  , "+c2+"    ,   =  "+c2.compareTo(c1));
+					if(c1.equals(c2))
+					{
+						count++;
+					}
+				}
+			}
+			if(count>5)
+			{
+				err= false;
+				System.out.println("ERROR: FAMILY: US16: "+fa.getId()+ " has more than 5 siblings born at the same time. ");
+			}
+		}
+		return err;
+	}
 
 	public boolean US15(ArrayList<Family> family){
 		boolean res = true;
