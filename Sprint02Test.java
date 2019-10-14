@@ -147,7 +147,7 @@ public class Sprint02Test extends Sprint2{
 
         assertEquals(2, sprint2.US12(ppl, fams)); // mom is 70 years older than son
     }
-/*
+
     public void testUS13(){
         Sprint2 sprint2 = new Sprint2();
         ArrayList<Person> a = new ArrayList<Person>();
@@ -156,32 +156,32 @@ public class Sprint02Test extends Sprint2{
         F.setId("PP001");
         F.setFirstName("Ned");
         F.setLastName("Stark");
-        F.setBirthDate("1","JAN",1950);
+        F.setBirthDate("1","JAN","1950");
         Person M = new Person();
         M.setId("PP006");
         M.setFirstName("Catelyn");
         M.setLastName("Stark");
-        M.setBirthDate("1","JAN",1950);
+        M.setBirthDate("1","JAN","1950");
         Person I2 = new Person();
         I2.setId("PP002");
         I2.setFirstName("Rob");
         I2.setLastName("Stark");
-        I2.setBirthDate("3","OCT",2000);
+        I2.setBirthDate("3","OCT","2000");
         Person I3 = new Person();
         I3.setId("PP003");
         I3.setFirstName("Arya");
         I3.setLastName("Stark");
-        I3.setBirthDate("3","APR",2000);
+        I3.setBirthDate("3","APR","2000");
         Person I4 = new Person();
         I4.setId("PP004");
         I4.setFirstName("Sansa");
         I4.setLastName("Stark");
-        I4.setBirthDate("2","JAN",2000);
+        I4.setBirthDate("2","JAN","2000");
         Person I1 = new Person();
         I1.setId("PP005");
         I1.setFirstName("Bran");
         I1.setLastName("Stark");
-        I1.setBirthDate("1","JAN",2000);
+        I1.setBirthDate("1","JAN","2000");
         a.add(F);
         a.add(M);
         a.add(I1);
@@ -190,24 +190,24 @@ public class Sprint02Test extends Sprint2{
         a.add(I4);
 
         Family f1 = new Family();
-        f1.setDad(F.getId());
-        f1.setMom(M.getId());
+        f1.setDad(F);
+        f1.setMom(M);
         f1.addChild(I1.getId());
         f1.addChild(I2.getId());
         f1.addChild(I3.getId());
         f1.addChild(I4.getId());
         b.add(f1);
-        assertEquals(false,sprint2.US13(a, b));
+        assertEquals(false,sprint2.US13(b, a));
         a.remove(I3);
         Family f2 = new Family();
-        f2.setDad(F.getId());
-        f2.setMom(M.getId());
+        f2.setDad(F);
+        f2.setMom(M);
         f2.addChild(I1.getId());
         f2.addChild(I2.getId());
         f2.addChild(I4.getId());
         b.remove(f1);
         b.add(f2);
-        assertEquals(true,sprint2.US13(a, b));
+        assertEquals(true,sprint2.US13(b, a));
         
     }
 
@@ -219,42 +219,42 @@ public class Sprint02Test extends Sprint2{
         F.setId("PP001");
         F.setFirstName("Ned");
         F.setLastName("Stark");
-        F.setBirthDate("1","JAN",1950);
+        F.setBirthDate("1","JAN","1950");
         Person M = new Person();
         M.setId("PP006");
         M.setFirstName("Catelyn");
         M.setLastName("Stark");
-        M.setBirthDate("1","JAN",1950);
+        M.setBirthDate("1","JAN","1950");
         Person I2 = new Person();
         I2.setId("PP002");
         I2.setFirstName("Rob");
         I2.setLastName("Stark");
-        I2.setBirthDate("1","JAN",2000);
+        I2.setBirthDate("1","JAN","2000");
         Person I3 = new Person();
         I3.setId("PP003");
         I3.setFirstName("Arya");
         I3.setLastName("Stark");
-        I3.setBirthDate("1","JAN",2000);
+        I3.setBirthDate("1","JAN","2000");
         Person I4 = new Person();
         I4.setId("PP004");
         I4.setFirstName("Sansa");
         I4.setLastName("Stark");
-        I4.setBirthDate("1","JAN",2000);
+        I4.setBirthDate("1","JAN","2000");
         Person I1 = new Person();
         I1.setId("PP005");
         I1.setFirstName("Bran");
         I1.setLastName("Stark");
-        I1.setBirthDate("1","JAN",2000);
+        I1.setBirthDate("1","JAN","2000");
         Person I5 = new Person();
         I5.setId("PP007");
         I5.setFirstName("Jon");
         I5.setLastName("Snow");
-        I5.setBirthDate("1","JAN",2000);
+        I5.setBirthDate("1","JAN","2000");
         Person I6 = new Person();
         I6.setId("PP008");
         I6.setFirstName("Jake");
         I6.setLastName("Stark");
-        I6.setBirthDate("1","JAN",2000);
+        I6.setBirthDate("1","JAN","2000");
         
         a.add(F);
         a.add(M);
@@ -265,8 +265,8 @@ public class Sprint02Test extends Sprint2{
         a.add(I5);
         a.add(I6);
         Family f1 = new Family();
-        f1.setDad(F.getId());
-        f1.setMom(M.getId());
+        f1.setDad(F);
+        f1.setMom(M);
         f1.addChild(I1.getId());
         f1.addChild(I2.getId());
         f1.addChild(I3.getId());
@@ -275,11 +275,11 @@ public class Sprint02Test extends Sprint2{
         f1.addChild(I6.getId());
         b.add(f1);
         
-        assertEquals(false,sprint2.US14(a, b));
+        assertEquals(false,sprint2.US14(b, a));
         a.remove(I6);
         Family f2 = new Family();
-        f2.setDad(F.getId());
-        f2.setMom(M.getId());
+        f2.setDad(F);
+        f2.setMom(M);
         f2.addChild(I1.getId());
         f2.addChild(I2.getId());
         f2.addChild(I3.getId());
@@ -287,8 +287,8 @@ public class Sprint02Test extends Sprint2{
         f2.addChild(I5.getId());
         b.remove(f1);
         b.add(f2);
-        assertEquals(true,sprint2.US14(a, b));
-    }*/
+        assertEquals(true,sprint2.US14(b, a));
+    }
     public void testUS15() {
         Sprint2 sprint2 = new Sprint2();
         Person[] p = new Person[17];
