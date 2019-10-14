@@ -323,7 +323,7 @@ public class Sprint2 {
 			if(count>5)
 			{
 				err= false;
-				System.out.println("ERROR: FAMILY: US16: "+fa.getId()+ " has more than 5 siblings born at the same time. ");
+				System.out.println("ERROR: FAMILY: US14: "+fa.getId()+ " has more than 5 siblings born at the same time. ");
 			}
 		}
 		return err;
