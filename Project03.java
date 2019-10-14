@@ -17,7 +17,7 @@ class Project03
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Please enter filename under the same directory: ");
         String fileName = myObj.nextLine();  // Read user input
-        FileReader fileReader = new FileReader(fileName);
+        FileReader fileReader = new FileReader("sprint02test.ged");
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> gedComStrings = new ArrayList<String>();
 
@@ -171,15 +171,15 @@ class Project03
             System.out.println();
         }
 
-//        Sprint1 sprint1 = new Sprint1();
-//        sprint1.US01(Indi, fams);
-//        sprint1.US02(Indi, fams);
-//        sprint1.US03(Indi);
-//        sprint1.US04(fams);
-//        sprint1.US05(Indi, fams);
-//        sprint1.US06(Indi, fams);
-//        sprint1.US07(Indi);
-//        sprint1.US08(fams, Indi);
+        Sprint1 sprint1 = new Sprint1();
+        sprint1.US01(Indi, fams);
+        sprint1.US02(Indi, fams);
+        sprint1.US03(Indi);
+        sprint1.US04(fams);
+        sprint1.US05(Indi, fams);
+        sprint1.US06(Indi, fams);
+        sprint1.US07(Indi);
+        sprint1.US08(fams, Indi);
 
         //sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
@@ -195,15 +195,15 @@ class Project03
         sprint2.US16(fams, Indi);
         
         if(testing) {
-//	        Sprint1Test test = new Sprint1Test();
-//	        test.testUS01();
-//	        test.testUS02();
-//	        test.testUS07();
-//	        test.testUS08();
-//	        test.testUS05();
-//	        test.testUS04();
-//	        test.testUS03();
-//	        test.testUS06();
+	        Sprint1Test test = new Sprint1Test();
+	        test.testUS01();
+	        test.testUS02();
+	        test.testUS07();
+	        test.testUS08();
+	        test.testUS05();
+	        test.testUS04();
+	        test.testUS03();
+	        test.testUS06();
 
 
 	        Sprint02Test sprint02Test = new Sprint02Test();
