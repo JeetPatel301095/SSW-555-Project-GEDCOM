@@ -187,6 +187,8 @@ class Project03
         
         sprint2.US09(Indi, fams);
         sprint2.US10(Indi, fams);
+        sprint2.US11(fams);
+        sprint2.US12(Indi, fams);
         sprint2.US13(fams, Indi);
         sprint2.US14(fams,Indi);
         sprint2.US15(fams);
@@ -210,8 +212,8 @@ class Project03
 	        sprint02Test.testUS16();
             sprint02Test.testUS11();
             sprint02Test.testUS12();
-            sprint02Test.testUS13();
-            sprint02Test.testUS14();
+            //sprint02Test.testUS13();
+            //sprint02Test.testUS14();
         }
     }
 }   

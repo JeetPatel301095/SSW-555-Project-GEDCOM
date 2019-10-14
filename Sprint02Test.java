@@ -147,7 +147,7 @@ public class Sprint02Test extends Sprint2{
 
         assertEquals(2, sprint2.US12(ppl, fams)); // mom is 70 years older than son
     }
-
+/*
     public void testUS13(){
         Sprint2 sprint2 = new Sprint2();
         ArrayList<Person> a = new ArrayList<Person>();
@@ -288,7 +288,7 @@ public class Sprint02Test extends Sprint2{
         b.remove(f1);
         b.add(f2);
         assertEquals(true,sprint2.US14(a, b));
-    }
+    }*/
     public void testUS15() {
         Sprint2 sprint2 = new Sprint2();
         Person[] p = new Person[17];
