@@ -177,7 +177,7 @@ public class Sprint2 {
 			}
 			if(dad == null || mom == null){
 				System.out.println("Error: US12: Mom or dad not found");
-				return 3;
+				retVal = 3;
 			}
 			for(String childId: fam.getChildrenIds()){
 				Person child = null;
@@ -188,20 +188,20 @@ public class Sprint2 {
 				}
 				if(child == null){
 					System.out.println("Error: US12: Child with id: " + childId + " not found.");
-					return 3;
+					retVal = 3;
 				}
-				if(dad.getBirthDate() == null){
+				if(dad.getBirthDate().equals("null")){
 					System.out.println("Error: US12: Dad with id: " + dad.getId() + " has no birthdate.");
-					return 3;
+					retVal = 3;
 				}
-				if(mom.getBirthDate() == null){
+				if(mom.getBirthDate().equals("null")){
 					System.out.println("Error: US12: Mom with id: " + mom.getId() + " has no birthdate.");
-					return 3;
+					retVal = 3;
 
 				}
-				if(child.getBirthDate() == null){
+				if(child.getBirthDate().equals("null")){
 					System.out.println("Error: US12: Child with id: " + child.getId() + " has no birthdate.");
-					return 3;
+					retVal = 3;
 
 				}
 				if(HelperMethods.calculateYear(dad.getBirthDate(), child.getBirthDate()) > 80){
@@ -295,7 +295,7 @@ public class Sprint2 {
 		{
 			ArrayList<Person> children = new ArrayList<Person>();
 			ArrayList<String> a = fa.getChildrenIds();
-			System.out.println(a);
+			//System.out.println(a);
 			for(String e:a)
 			{
 				for(Person we: ind)
