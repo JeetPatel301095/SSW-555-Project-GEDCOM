@@ -246,7 +246,7 @@ public class Sprint2 {
 				}
 			}
 			if(children.size()<=1)
-				return true;
+				err= false;
 			if(children.size()==2)
 			{
 				long difference = (children.get(1).getBirthDate().getTime()-children.get(0).getBirthDate().getTime())/(86400000);
