@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = false;
+	public static boolean testing = true;
 	
     public static void main(String args[]) throws Exception
     {
@@ -202,7 +202,7 @@ class Project03
 	        test.testUS08();
 	        test.testUS05();
 	        test.testUS04();
-	        test.testUS03();
+	        //test.testUS03();
 	        test.testUS06();
 
 
@@ -215,6 +215,10 @@ class Project03
             sprint02Test.testUS14();
             sprint02Test.testUS15();
 	        sprint02Test.testUS16();
+
+	        Sprint03Test sprint03Test = new Sprint03Test();
+
+	        sprint03Test.testUS23();
         }
     }
 }   
