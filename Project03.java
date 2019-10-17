@@ -219,6 +219,7 @@ class Project03
 	        Sprint03Test sprint03Test = new Sprint03Test();
 
 	        sprint03Test.testUS23();
+	        sprint03Test.testUS24();
         }
     }
 }   
