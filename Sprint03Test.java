@@ -51,4 +51,59 @@ public class Sprint03Test extends Sprint3{
 
         assertEquals(true, sprint3.US23(people));
     }
+
+    public void testUS24(){
+        Sprint3 sprint3 = new Sprint3();
+        Person husband1 = new Person();
+        Person husband2 = new Person();
+        Person husband3 = new Person();
+        Person wife1 = new Person();
+        Person wife2 = new Person();
+        Person wife3 = new Person();
+        Family fam1 = new Family();
+        Family fam2 = new Family();
+        Family fam3 = new Family();
+        husband1.setId("p01");
+        husband2.setId("p02");
+        husband3.setId("p03");
+        wife1.setId("p04");
+        wife2.setId("p05");
+        wife3.setId("p06");
+        fam1.setId("f01");
+        fam2.setId("f02");
+        fam3.setId("f03");
+
+        husband1.setFirstName("John");
+        husband1.setLastName("Smith");
+        wife1.setFirstName("Isabelle");
+        wife1.setLastName("Smith");
+        fam1.setDad(husband1);
+        fam1.setMom(wife1);
+        fam1.setMarriageDate("1", "JUL", "1990");
+
+        husband2.setFirstName("John");
+        husband2.setLastName("Smith");
+        wife2.setFirstName("Isabelle");
+        wife2.setLastName("Smith");
+        fam2.setDad(husband2);
+        fam2.setMom(wife2);
+        fam2.setMarriageDate("1", "JUL", "1990");
+
+        husband3.setFirstName("John");
+        husband3.setLastName("Deer");
+        wife3.setFirstName("Isabelle");
+        wife3.setLastName("Deer");
+        fam3.setDad(husband3);
+        fam3.setMom(wife3);
+        fam3.setMarriageDate("1", "JUL", "1990");
+
+        ArrayList<Family> fams = new ArrayList<>();
+        fams.add(fam1);
+        fams.add(fam2);
+        fams.add(fam3);
+        assertEquals(false, sprint3.US24(fams));
+
+        fam1.setMarriageDate("20", "MAY", "1995");
+        assertEquals(true, sprint3.US24(fams));
+    }
 }

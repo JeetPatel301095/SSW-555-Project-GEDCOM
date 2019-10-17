@@ -38,4 +38,29 @@ public class Sprint3 {
         return retVal;
     }
 
+    public boolean US24(ArrayList<Family> fams){
+        boolean retVal = true;
+        for(int i=0; i<fams.size(); i++){
+            String husbandName = fams.get(i).getHusbandFullName();
+            String wifeName = fams.get(i).getWifeFullName();
+            Date firstFamDate = fams.get(i).getMarriageDate();
+            String firstFamID = fams.get(i).getId();
+            for(int j=i; j<fams.size(); j++){
+                if(j==i){
+                    continue;
+                }else{
+                    String husbandCompare = fams.get(j).getHusbandFullName();
+                    String wifeCompare = fams.get(j).getWifeFullName();
+                    Date dateCompare = fams.get(j).getMarriageDate();
+                    String idCompare = fams.get(j).getId();
+                    if(husbandName.equals(husbandCompare) && wifeName.equals(wifeCompare) && firstFamDate.equals(dateCompare)){
+                        System.out.println("ERROR: FAMILIES: US24: Family with ID: " + idCompare + " has the same husband name, wife name, and marriage date as family with ID: " + firstFamID);
+                        retVal = false;
+                    }
+                }
+            }
+        }
+        return retVal;
+    }
+
 }
