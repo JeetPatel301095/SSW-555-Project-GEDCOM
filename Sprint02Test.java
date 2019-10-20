@@ -286,7 +286,6 @@ public class Sprint02Test extends Sprint2{
         f2.addChild(I2.getId());
         f2.addChild(I3.getId());
         f2.addChild(I4.getId());
-        f2.addChild(I5.getId());
         b.remove(f1);
         b.add(f2);
         assertEquals(true,sprint2.US14(b, a));
