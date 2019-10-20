@@ -178,6 +178,7 @@ public class Sprint2 {
 			if(dad == null || mom == null){
 				System.out.println("Error: US12: Mom or dad not found");
 				retVal = 3;
+				return retVal;
 			}
 			for(String childId: fam.getChildrenIds()){
 				Person child = null;
@@ -222,7 +223,7 @@ public class Sprint2 {
 	
 	/*
 	Jeet Patel US13
-	Siblings Spacing- Birthdays atleast 8 months or less than 2 days
+	Siblings Spacing- Birthdays at least 8 months or less than 2 days
 	*/
 	public boolean US13(ArrayList<Family> fam, ArrayList<Person> indi)
 	{
@@ -245,7 +246,7 @@ public class Sprint2 {
 				}
 			}
 			if(children.size()<=1)
-				return true;
+				err= false;
 			if(children.size()==2)
 			{
 				long difference = (children.get(1).getBirthDate().getTime()-children.get(0).getBirthDate().getTime())/(86400000);

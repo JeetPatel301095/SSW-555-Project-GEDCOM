@@ -62,7 +62,8 @@ public class Sprint02Test extends Sprint2{
 		husb.setBirthDate("1", "1", "1990");
 		assertEquals(2, s2.US10(person, family));
 	}
-
+	
+	@Test
     public void testUS11() {
         Sprint2 sprint2 = new Sprint2();
         Person husband1 = new Person();
@@ -108,7 +109,8 @@ public class Sprint02Test extends Sprint2{
         assertEquals(1, sprint2.US11(fams));
 
     }
-
+	
+	@Test
     public void testUS12(){
         Sprint2 sprint2 = new Sprint2();
         Person dad = new Person();
@@ -278,18 +280,9 @@ public class Sprint02Test extends Sprint2{
         b.add(f1);
         
         assertEquals(false,sprint2.US14(b, a));
-        a.remove(I6);
-        Family f2 = new Family();
-        f2.setDad(F);
-        f2.setMom(M);
-        f2.addChild(I1.getId());
-        f2.addChild(I2.getId());
-        f2.addChild(I3.getId());
-        f2.addChild(I4.getId());
-        b.remove(f1);
-        b.add(f2);
-        assertEquals(true,sprint2.US14(b, a));
     }
+    
+    @Test
     public void testUS15() {
         Sprint2 sprint2 = new Sprint2();
         Person[] p = new Person[17];
@@ -304,7 +297,8 @@ public class Sprint02Test extends Sprint2{
         fam.add(f);
         assertEquals(false, sprint2.US15(fam));
     }
-
+    
+    @Test
     public void testUS16(){
         Sprint2 sprint2 = new Sprint2();
         Person p1 = new Person();

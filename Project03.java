@@ -145,7 +145,7 @@ class Project03
         }
         System.out.println("Individuals");
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%10s %20s %20s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         System.out.println();
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,7 +162,7 @@ class Project03
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         Collections.sort(fams, (o1, o2) -> o1.getId().compareTo(o2.getId()));
-        System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s", "ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
+        System.out.format("%10s %28s %25s %20s %20s %20s %20s %20s", "ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
         System.out.println();
         for(Family family : fams)
         {
@@ -171,15 +171,15 @@ class Project03
             System.out.println();
         }
 
-//        Sprint1 sprint1 = new Sprint1();
-//        sprint1.US01(Indi, fams);
-//        sprint1.US02(Indi, fams);
-//        sprint1.US03(Indi);
-//        sprint1.US04(fams);
-//        sprint1.US05(Indi, fams);
-//        sprint1.US06(Indi, fams);
-//        sprint1.US07(Indi);
-//        sprint1.US08(fams, Indi);
+        Sprint1 sprint1 = new Sprint1();
+        sprint1.US01(Indi, fams);
+        sprint1.US02(Indi, fams);
+        sprint1.US03(Indi);
+        sprint1.US04(fams);
+        sprint1.US05(Indi, fams);
+        sprint1.US06(Indi, fams);
+        sprint1.US07(Indi);
+        sprint1.US08(fams, Indi);
 
         //sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
@@ -195,15 +195,15 @@ class Project03
         sprint2.US16(fams, Indi);
         
         if(testing) {
-//	        Sprint1Test test = new Sprint1Test();
-//	        test.testUS01();
-//	        test.testUS02();
-//	        test.testUS07();
-//	        test.testUS08();
-//	        test.testUS05();
-//	        test.testUS04();
-//	        test.testUS03();
-//	        test.testUS06();
+	        Sprint1Test test = new Sprint1Test();
+	        test.testUS01();
+	        test.testUS02();
+	        test.testUS07();
+	        test.testUS08();
+	        test.testUS05();
+	        test.testUS04();
+	        //test.testUS03();
+	        test.testUS06();
 
 
 	        Sprint02Test sprint02Test = new Sprint02Test();
@@ -215,6 +215,11 @@ class Project03
             sprint02Test.testUS14();
             sprint02Test.testUS15();
 	        sprint02Test.testUS16();
+
+	        Sprint03Test sprint03Test = new Sprint03Test();
+
+	        sprint03Test.testUS23();
+	        sprint03Test.testUS24();
         }
     }
 }   
