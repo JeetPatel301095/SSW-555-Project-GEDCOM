@@ -149,4 +149,28 @@ public class Sprint3 {
         return retVal;
     }
 
+
+    public ArrayList US30(ArrayList<Person> personArrayList){
+    	ArrayList<Person> res = new ArrayList<>();
+		for(Person p:personArrayList){
+			if(!p.getFams().equals("NA") && !p.getDead()){//means this person is married and is alive
+				res.add(p);
+			}
+
+		}
+    	return res;
+	}
+
+	public ArrayList US31(ArrayList<Person> personArrayList){
+		ArrayList<Person> res = new ArrayList<>();
+		for(Person p:personArrayList){
+			if(p.getAge() > 30){
+				if(p.getFams().equals("NA") && !p.getDead()){//means this person does not have a spouse and single.
+					res.add(p);
+				}
+			}
+		}
+
+		return res;
+	}
 }

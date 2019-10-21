@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = false;
+	public static boolean testing = true;
 	
     public static void main(String args[]) throws Exception
     {
@@ -200,7 +200,25 @@ class Project03
         sprint3.US22(Indi, fams);
         sprint3.US23(Indi);
         sprint3.US24(fams);
-             
+        ArrayList<Person> us30 = sprint3.US30(Indi);
+        ArrayList<Person> us31 = sprint3.US31(Indi);
+        System.out.println("Living people who are married.");
+        System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        for(Person in : us30)
+        {
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
+        }
+        System.out.println("All living people over 30 who have never been married.");
+        System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        for(Person in : us31)
+        {
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
+        }
+
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
 	        test.testUS01();
@@ -229,6 +247,8 @@ class Project03
 	        sprint03Test.testUS22();
 	        sprint03Test.testUS23();
 	        sprint03Test.testUS24();
+	        sprint03Test.testUS30();
+	        sprint03Test.testUS31();
         }
     }
 }   
