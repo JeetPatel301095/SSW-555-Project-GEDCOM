@@ -111,7 +111,7 @@ public class Sprint3 {
         return retVal;
     }
 
-    /* Chris Rudel US23
+    /* Chris Rudel US24
      * Checks to ensure families have unique spouses; a family's mom and dad cannot have the same name and marriage date as another family
      * @param fams - ArrayList which contains all families
      * @return
