@@ -7,9 +7,53 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class Sprint03Test extends Sprint3{
-
-
-
+	@Test
+	public void testUS21() {
+		Sprint3 sprint3 = new Sprint3();
+		Person hus = new Person();
+		Person wife = new Person();
+		Family fam = new Family();
+		hus.setId("p1");
+		hus.setSex("F");
+		wife.setId("p2");
+		wife.setSex("M");
+		fam.setId("f1");
+		fam.setDad(hus);
+		ArrayList<Person> p = new ArrayList<>();
+		ArrayList<Family> f = new ArrayList<>();
+		p.add(hus);
+		p.add(wife);
+		f.add(fam);
+		assertEquals(1, sprint3.US21(p, f));
+		fam.setMom(wife);
+		assertEquals(3, sprint3.US21(p, f));
+		p.remove(hus);
+		assertEquals(2, sprint3.US21(p, f));
+	}
+	
+	@Test
+	public void testUS22() {
+		Sprint3 sprint3 = new Sprint3();
+		Person p1 = new Person();
+		Person p2 = new Person();
+		Family f1 = new Family();
+		Family f2 = new Family();
+		p1.setId("p1");
+		p2.setId("p1");
+		f1.setId("f1");
+		f2.setId("f1");
+		ArrayList<Person> p = new ArrayList<>();
+		ArrayList<Family> f = new ArrayList<>();
+		p.add(p1);
+		p.add(p2);
+		assertEquals(1, sprint3.US22(p, f));
+		f.add(f1);
+		f.add(f2);
+		assertEquals(3, sprint3.US22(p, f));
+		p.remove(p2);
+		assertEquals(2, sprint3.US22(p, f));
+	}
+	
     public void testUS23(){
         Sprint3 sprint3 = new Sprint3();
         Person p01 = new Person();
@@ -105,5 +149,88 @@ public class Sprint03Test extends Sprint3{
 
         fam1.setMarriageDate("20", "MAY", "1995");
         assertEquals(true, sprint3.US24(fams));
+    }
+
+    public void testUS30(){
+        Sprint3 sprint3 = new Sprint3();
+        Person husband1 = new Person();
+        Person husband2 = new Person();
+        Person wife1 = new Person();
+        Person wife2 = new Person();
+        Person single = new Person();
+
+        single.setId("p00");
+        single.setLastName("Zhang");
+        single.setFirstName("Zh");
+        husband1.setId("p01");
+        husband2.setId("p02");
+        wife1.setId("p04");
+        wife2.setId("p05");
+
+        husband1.setFirstName("John");
+        husband1.setLastName("Smith");
+        wife1.setFirstName("Isabelle");
+        wife1.setLastName("Smith");
+        husband1.setFams("p04");
+        wife1.setFams("p01");
+
+        husband2.setFirstName("John");
+        husband2.setLastName("Smith");
+        husband2.setFams("p05");
+        wife2.setFirstName("Isabelle");
+        wife2.setLastName("Smith");
+        wife2.setFams("p02");
+
+        ArrayList<Person> p = new ArrayList<>();
+        p.add(husband1);
+        p.add(husband2);
+        p.add(wife1);
+        p.add(wife2);
+        p.add(single);
+        assertEquals(4, sprint3.US30(p).size());
+
+    }
+    public void testUS31(){
+        Sprint3 sprint3 = new Sprint3();
+        Person husband1 = new Person();
+        Person husband2 = new Person();
+        Person wife1 = new Person();
+        Person wife2 = new Person();
+        Person single = new Person();
+        Person single2 = new Person();
+        Person displayed = new Person();
+
+        single.setId("p00");
+        single.setLastName("Zhang");
+        single.setFirstName("Zh");
+        single.setBirthDate("30","01","2000");
+        single.setAge();
+        single2.setId("0001");
+        single2.setDead(true);
+        displayed.setId("p007");
+        displayed.setBirthDate("01","01","1950");
+        displayed.setAge();
+
+        husband1.setId("p01");
+        husband2.setId("p02");
+        wife1.setId("p04");
+        wife2.setId("p05");
+
+        husband1.setFirstName("John");
+        husband1.setLastName("Smith");
+        wife1.setFirstName("Isabelle");
+        wife1.setLastName("Smith");
+        husband1.setFams("p04");
+        wife1.setFams("p01");
+
+        ArrayList<Person> p = new ArrayList<>();
+        p.add(husband1);
+        p.add(husband2);
+        p.add(wife1);
+        p.add(wife2);
+        p.add(single);
+        p.add(single2);
+        p.add(displayed);
+        assertEquals(1, sprint3.US31(p).size());
     }
 }
