@@ -196,10 +196,11 @@ class Project03
         
         Sprint3 sprint3 = new Sprint3();
         
+        sprint3.US21(Indi, fams);
+        sprint3.US22(Indi, fams);
         sprint3.US23(Indi);
         sprint3.US24(fams);
-        
-        
+             
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
 	        test.testUS01();
@@ -223,7 +224,9 @@ class Project03
 	        sprint02Test.testUS16();
 
 	        Sprint03Test sprint03Test = new Sprint03Test();
-
+	        
+	        sprint03Test.testUS21();
+	        sprint03Test.testUS22();
 	        sprint03Test.testUS23();
 	        sprint03Test.testUS24();
         }

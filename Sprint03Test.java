@@ -7,9 +7,53 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class Sprint03Test extends Sprint3{
-
-
-
+	@Test
+	public void testUS21() {
+		Sprint3 sprint3 = new Sprint3();
+		Person hus = new Person();
+		Person wife = new Person();
+		Family fam = new Family();
+		hus.setId("p1");
+		hus.setSex("F");
+		wife.setId("p2");
+		wife.setSex("M");
+		fam.setId("f1");
+		fam.setDad(hus);
+		ArrayList<Person> p = new ArrayList<>();
+		ArrayList<Family> f = new ArrayList<>();
+		p.add(hus);
+		p.add(wife);
+		f.add(fam);
+		assertEquals(1, sprint3.US21(p, f));
+		fam.setMom(wife);
+		assertEquals(3, sprint3.US21(p, f));
+		p.remove(hus);
+		assertEquals(2, sprint3.US21(p, f));
+	}
+	
+	@Test
+	public void testUS22() {
+		Sprint3 sprint3 = new Sprint3();
+		Person p1 = new Person();
+		Person p2 = new Person();
+		Family f1 = new Family();
+		Family f2 = new Family();
+		p1.setId("p1");
+		p2.setId("p1");
+		f1.setId("f1");
+		f2.setId("f1");
+		ArrayList<Person> p = new ArrayList<>();
+		ArrayList<Family> f = new ArrayList<>();
+		p.add(p1);
+		p.add(p2);
+		assertEquals(1, sprint3.US22(p, f));
+		f.add(f1);
+		f.add(f2);
+		assertEquals(3, sprint3.US22(p, f));
+		p.remove(p2);
+		assertEquals(2, sprint3.US22(p, f));
+	}
+	
     public void testUS23(){
         Sprint3 sprint3 = new Sprint3();
         Person p01 = new Person();
