@@ -83,7 +83,7 @@ public class Sprint3 {
      * @param individs - ArrayList which contains all individuals
      * @return
      * 	true: no errors
-     * 	1: individuals that have the same first name, last name and birthdate exist
+     * 	false: individuals that have the same first name, last name and birthdate exist
      */
     public boolean US23(ArrayList<Person> individs){
         boolean retVal = true;
@@ -111,6 +111,13 @@ public class Sprint3 {
         return retVal;
     }
 
+    /* Chris Rudel US23
+     * Checks to ensure families have unique spouses; a family's mom and dad cannot have the same name and marriage date as another family
+     * @param fams - ArrayList which contains all families
+     * @return
+     * 	true: no errors
+     * 	false: families that have the same name and marriage date exist
+     */
     public boolean US24(ArrayList<Family> fams){
         boolean retVal = true;
         for(int i=0; i<fams.size(); i++){
@@ -122,10 +129,16 @@ public class Sprint3 {
                 if(j==i){
                     continue;
                 }else{
+                    if(firstFamDate == null){
+                        continue;
+                    }
                     String husbandCompare = fams.get(j).getHusbandFullName();
                     String wifeCompare = fams.get(j).getWifeFullName();
                     Date dateCompare = fams.get(j).getMarriageDate();
                     String idCompare = fams.get(j).getId();
+                    if(dateCompare == null){
+                        continue;
+                    }
                     if(husbandName.equals(husbandCompare) && wifeName.equals(wifeCompare) && firstFamDate.equals(dateCompare)){
                         System.out.println("ERROR: FAMILIES: US24: Family with ID: " + idCompare + " has the same husband name, wife name, and marriage date as family with ID: " + firstFamID);
                         retVal = false;
