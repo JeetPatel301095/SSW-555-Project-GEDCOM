@@ -53,7 +53,8 @@ public class Sprint03Test extends Sprint3{
 		p.remove(p2);
 		assertEquals(2, sprint3.US22(p, f));
 	}
-	
+
+    @Test
     public void testUS23(){
         Sprint3 sprint3 = new Sprint3();
         Person p01 = new Person();
@@ -96,6 +97,7 @@ public class Sprint03Test extends Sprint3{
         assertEquals(true, sprint3.US23(people));
     }
 
+    @Test
     public void testUS24(){
         Sprint3 sprint3 = new Sprint3();
         Person husband1 = new Person();
@@ -151,6 +153,78 @@ public class Sprint03Test extends Sprint3{
         assertEquals(true, sprint3.US24(fams));
     }
 
+    @Test
+    public void testUS25()
+    {
+        Sprint3 sprint3 = new Sprint3();
+        Person husb = new Person();
+        Person wife = new Person();
+        Person child = new Person();
+        ArrayList<Person> a = new ArrayList<Person>();
+        ArrayList<Family> b = new ArrayList<Family>();
+
+        husb.setId("Sp3I1");
+        wife.setId("Sp3I2");
+        child.setId("Sp3I3");
+
+        husb.setFirstName("ABC");
+        wife.setFirstName("DEF");
+        child.setFirstName("ABC");
+
+        husb.setLastName("XYZ");
+        wife.setLastName("XYZ");
+        child.setLastName("XYZ");
+
+        Family re = new Family();
+        re.setId("Sp3F1");
+        re.setDad(husb);
+        re.setMom(wife);
+        re.addChild(child.getId());
+
+        a.add(husb);
+        a.add(wife);
+        a.add(child);
+
+        b.add(re);
+
+        assertEquals(false, sprint3.US25(b,a));
+    }
+
+    @Test
+    public void testUS29()
+    {
+        Sprint3 sprint3 = new Sprint3();
+        Person p1 = new Person();
+        Person p2 = new Person();
+        Person p3 = new Person();
+        ArrayList<Person> a = new ArrayList<Person>();
+
+        p1.setId("Sp3I1");
+        p2.setId("Sp3I2");
+        p3.setId("Sp3I3");
+        p1.setFirstName("ABC");
+        p2.setFirstName("DEF");
+        p3.setFirstName("GHI");
+        p1.setLastName("XYZ");
+        p2.setLastName("XYZ");
+        p3.setLastName("XYZ");
+
+        p1.setDead(true);
+        p2.setDead(true);
+        p3.setDead(true);
+
+        p1.setDeathDate("1","AUG","2000");
+        p2.setDeathDate("1","OCT","2000");
+        p3.setDeathDate("1","SEP","2000");
+
+        a.add(p1);
+        a.add(p2);
+        a.add(p3);
+
+        assertEquals(3, sprint3.US29(a).size());
+    }
+
+    @Test
     public void testUS30(){
         Sprint3 sprint3 = new Sprint3();
         Person husband1 = new Person();
@@ -190,6 +264,8 @@ public class Sprint03Test extends Sprint3{
         assertEquals(4, sprint3.US30(p).size());
 
     }
+
+    @Test
     public void testUS31(){
         Sprint3 sprint3 = new Sprint3();
         Person husband1 = new Person();

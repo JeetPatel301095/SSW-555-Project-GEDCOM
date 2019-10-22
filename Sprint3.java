@@ -150,8 +150,9 @@ public class Sprint3 {
     }
 
     public boolean US25(ArrayList<Family> fam, ArrayList<Person> Indi) {
-        boolean err = true;
-        for (Family fa : fam) {
+		int count = 0;
+		for (Family fa : fam) {
+			boolean err = true;
 
             ArrayList<String> familyName = new ArrayList<String>();
             familyName.add(fa.getHusbandFullName());
@@ -167,19 +168,31 @@ public class Sprint3 {
                     }
                 }
             }
+//            System.out.println(familyName.size());
+//            System.out.println(familyName);
             for(int i=0;i<familyName.size();i++)
-            {
-                for(int j=i+1;j<familyName.size();j++)
-                {
-                    if(familyName.get(i)==familyName.get(j))
-                        err=false;
-                }
-            }
-            if(!err)
-                System.out.println("ERROR: FAMILIES: US24: Family with ID: "+fa.getId()+" Have Individuals with the same Name");
+			{
+				for(int j=i+1;j<familyName.size();j++)
+				{
+					String h=familyName.get(i);
+					String g= familyName.get(j);
+//					System.out.println(h+"  "+g);
+					if(h.equals(g))
+					{
+						count++;
+						err=false;
+					}
+				}
+			}
+            if(err==false)
+			{
+				System.out.println("ERROR: FAMILIES: US25: Family with ID: "+fa.getId()+" Have Individuals with the same Name");
+			}
         }
-
-        return err;
+		if(count>0)
+        	return false;
+		else
+			return true;
     }
 	public ArrayList US29(ArrayList<Person> perList){
 		ArrayList<Person> res = new ArrayList<>();
