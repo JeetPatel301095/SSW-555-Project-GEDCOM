@@ -181,10 +181,10 @@ class Project03
         sprint1.US07(Indi);
         sprint1.US08(fams, Indi);
 
-        //sprint 02 user stories
+//        sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
 
-        
+
         sprint2.US09(Indi, fams);
         sprint2.US10(Indi, fams);
         sprint2.US11(fams);
@@ -193,15 +193,25 @@ class Project03
         sprint2.US14(fams,Indi);
         sprint2.US15(fams);
         sprint2.US16(fams, Indi);
-        
+
         Sprint3 sprint3 = new Sprint3();
-        
+
         sprint3.US21(Indi, fams);
         sprint3.US22(Indi, fams);
         sprint3.US23(Indi);
         sprint3.US24(fams);
+        sprint3.US25(fams,Indi);
+        ArrayList<Person> us29 = sprint3.US29(Indi);
         ArrayList<Person> us30 = sprint3.US30(Indi);
         ArrayList<Person> us31 = sprint3.US31(Indi);
+        System.out.println("List of People Deceased");
+        System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        for(Person in : us29)
+        {
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
+        }
         System.out.println("Living people who are married.");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         for(Person in : us30)
@@ -242,7 +252,7 @@ class Project03
 	        sprint02Test.testUS16();
 
 	        Sprint03Test sprint03Test = new Sprint03Test();
-	        
+
 	        sprint03Test.testUS21();
 	        sprint03Test.testUS22();
 	        sprint03Test.testUS23();

@@ -47,7 +47,7 @@ class Person
         this.LastName=lname;
 //        System.out.println(lname);
     }
-    
+
     public void setSex(String sex)
     {
         this.Sex=sex;
@@ -162,6 +162,7 @@ class Person
     {
         return this.LastName;
     }
+    public String getFullName() { return (this.FirstName+this.LastName);}
     public String getSex()
     {
         return this.Sex;
