@@ -19,7 +19,7 @@
             </fileset>
         </copy>
     </target>
-    <target name="test" depends="compile">
+    <target name="test">
         
     </target>
     <target name="clean">
