@@ -19,6 +19,9 @@
             </fileset>
         </copy>
     </target>
+    <target name="test" depends="compile">
+        
+    </target>
     <target name="clean">
         <delete>
             <fileset dir="." includes="**/*.class"/>
