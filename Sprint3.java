@@ -90,7 +90,7 @@ public class Sprint3 {
         for(int i=0; i<individs.size(); i++){
             String fName = individs.get(i).getFirstName();
             String lName = individs.get(i).getLastName();
-            Date bDate = individs.get(i).getBirthDate();
+            String bDate = individs.get(i).getBirthDate().toString();
             String id = individs.get(i).getId();
             for(int j=i; j<individs.size(); j++){
                 if(j==i){
@@ -98,7 +98,7 @@ public class Sprint3 {
                 }else{
                     String fNameCompare = individs.get(j).getFirstName();
                     String lNameCompare = individs.get(j).getLastName();
-                    Date bDateCompare = individs.get(j).getBirthDate();
+                    String bDateCompare = individs.get(j).getBirthDate().toString();
                     String idTest = individs.get(j).getId();
                     if(fName.equals(fNameCompare) && lName.equals(lNameCompare) && bDate.equals(bDateCompare)){
                         System.out.println("ERROR: INDIVIDUAL: US23: User with ID: " + idTest + " has the same first name, last name, and birthday as user with ID: " + id);
