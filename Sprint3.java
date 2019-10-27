@@ -129,14 +129,14 @@ public class Sprint3 {
                 if(j==i){
                     continue;
                 }else{
-                    if(firstFamDate == null){
+                    if(husbandName == null || wifeName == null || firstFamDate == null){
                         continue;
                     }
                     String husbandCompare = fams.get(j).getHusbandFullName();
                     String wifeCompare = fams.get(j).getWifeFullName();
                     Date dateCompare = fams.get(j).getMarriageDate();
                     String idCompare = fams.get(j).getId();
-                    if(dateCompare == null){
+                    if(husbandCompare == null || wifeCompare == null || dateCompare == null){
                         continue;
                     }
                     if(husbandName.equals(husbandCompare) && wifeName.equals(wifeCompare) && firstFamDate.equals(dateCompare)){
