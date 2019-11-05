@@ -229,6 +229,11 @@ class Project03
             System.out.println();
         }
 
+        Sprint4 sprint4 = new Sprint4();
+
+        sprint4.US34(Indi, fams);
+        sprint4.US35(Indi);
+
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
 	        test.testUS01();
@@ -259,6 +264,11 @@ class Project03
 	        sprint03Test.testUS24();
 	        sprint03Test.testUS30();
 	        sprint03Test.testUS31();
+
+	        Sprint04Test sprint04test = new Sprint04Test();
+
+	        sprint04test.testUS34();
+	        sprint04test.testUS35();
         }
     }
 }   

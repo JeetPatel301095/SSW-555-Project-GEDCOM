@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class HelperMethods {
 	public static int calculateMonth(Date start, Date end){
@@ -26,6 +27,12 @@ public class HelperMethods {
             diff--;
         }
         return diff;
+    }
+    public static int calculateDays(Date start, Date end){
+	    long calc = start.getTime() - end.getTime();
+        long longDays = TimeUnit.DAYS.convert(calc, TimeUnit.MILLISECONDS); // this is to calculate days
+        int days = (int) longDays;
+        return days;
     }
     public static Calendar getCalendar(Date date) {
         Calendar cal = Calendar.getInstance(Locale.US);
