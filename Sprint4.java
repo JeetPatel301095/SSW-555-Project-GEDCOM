@@ -1,7 +1,9 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Sprint4 {
 
@@ -66,5 +68,63 @@ public class Sprint4 {
                 System.out.println("US35: INDIVIDUALS: Individual with ID: " + person.getId() + " was born within the past 30 days (" + days + " days ago)");
             }
         }
+    }
+
+    public ArrayList US38(ArrayList<Person> indi){
+        Date now = new Date();
+        ArrayList<Person> res = new ArrayList<>();
+        for(Person p:indi){
+            if(isInThirty(now, p.getBirthDate()) && !p.getDead()){
+                res.add(p);
+            }
+        }
+        return res;
+    }
+
+    public ArrayList US39(ArrayList<Family> families, ArrayList<Person> people){
+        ArrayList<Family> res = new ArrayList<>();
+        Date now = new Date();
+        for(Family family:families){
+            try {
+                if (isInThirty(now, family.getMarriageDate())) {
+                    res.add(family);
+                }
+            }catch (Exception e){
+                continue;
+            }
+        }
+        return res;
+    }
+
+    //If the anniversaries date is in Jan, then to compare the difference between days, make the year of the anniversaries date one year greater than current date. Then calculates difference of days
+    //otherwise, just make the year of anniversaries the same as now and others remain the unchanged.
+
+    public boolean isInThirty(Date now, Date anniversaries){
+        //return true if the dates are within 30 days ignoring year.
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(anniversaries);
+        int monthOfMarriage = cal.get(Calendar.MONTH);    //Note month is zero based which means Jan is 0
+        int dayOfMarriage = cal.get(Calendar.DAY_OF_MONTH);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(now);
+        int yearOfNow = cal2.get(Calendar.YEAR);
+
+        if(monthOfMarriage == 0){
+            Date fakeAnni = new GregorianCalendar(yearOfNow+1, monthOfMarriage, dayOfMarriage).getTime();
+            int difference = HelperMethods.calculateDays(fakeAnni, now);
+            if(difference <= 30 && difference >= 0)
+                return true;
+            else
+                return false;
+        }else{
+            Date fakeAnni = new GregorianCalendar(yearOfNow, monthOfMarriage, dayOfMarriage).getTime();
+            int difference = HelperMethods.calculateDays(fakeAnni, now);
+            if(difference <= 30 && difference >= 0)
+                return true;
+            else
+                return false;
+        }
+
     }
 }

@@ -44,4 +44,33 @@ public class Sprint04Test {
         individs.add(p1);
         sprint4.US35(individs);
     }
+
+    @Test
+    public void testUS38(){
+        Sprint4 sprint4 = new Sprint4();
+        ArrayList<Person> individs = new ArrayList<>();
+        Person p1 = new Person();
+        p1.setId("p01");
+        p1.setFirstName("wxs");
+        p1.setLastName("Qwd");
+        p1.setBirthDate("6", "NOV", "2019");
+        individs.add(p1);
+        assertEquals(1,sprint4.US38(individs).size());
+    }
+
+    @Test
+    public void testUS39(){
+        Sprint4 sprint4 = new Sprint4();
+        ArrayList<Family> fam = new ArrayList<>();
+        Family family = new Family();
+        family.setMarriageDate("6", "NOV", "2019");
+        fam.add(family);
+        ArrayList<Person> individs = new ArrayList<>();
+        Person p1 = new Person();
+        p1.setId("p01");
+        p1.setFirstName("wxs");
+        p1.setLastName("Qwd");
+        p1.setBirthDate("6", "NOV", "2019");
+        assertEquals(1,sprint4.US39(fam,individs).size());
+    }
 }
