@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = false;
+	public static boolean testing = true;
 	
     public static void main(String args[]) throws Exception
     {
@@ -234,6 +234,7 @@ class Project03
         ArrayList<Person> US38 = sprint4.US38(Indi);
         System.out.println("Living people whose birthday is in 30 days:");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        System.out.println();
         for(Person in : US38)
         {
             System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
@@ -241,7 +242,15 @@ class Project03
             System.out.println();
         }
 
-
+        ArrayList<Family> US39 = sprint4.US39(fams, Indi);
+        System.out.println("Living couple whose marriage anniversaries occur in the next 30 days:");
+        System.out.printf("%20s %20s %20s", "Husband Name", "Wife Name", "anniversary date");
+        System.out.println();
+        for(Family fam : US39)
+        {
+            System.out.format("%20s %20s %20s",fam.getHusbandFullName(),fam.getWifeFullName(), simpleDateFormat.format(fam.getMarriageDate()));
+            System.out.println();
+        }
 
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
@@ -278,6 +287,8 @@ class Project03
 
 	        sprint04test.testUS34();
 	        sprint04test.testUS35();
+	        sprint04test.testUS38();
+            sprint04test.testUS39();
         }
     }
 }   
