@@ -67,4 +67,40 @@ public class Sprint4 {
             }
         }
     }
+
+    public ArrayList US38(ArrayList<Person> indi){
+        Date now = new Date();
+        ArrayList<Person> res = new ArrayList<>();
+        for(Person p:indi){
+            if(HelperMethods.calculateDays(p.getBirthDate(), now) <= 30 && !p.getDead()){
+                res.add(p);
+            }
+        }
+        return res;
+    }
+
+    public ArrayList US39(ArrayList<Family> families, ArrayList<Person> people){
+        ArrayList<Person> res = new ArrayList<>();
+
+        for(Family family:families){
+
+        }
+    }
+
+    public boolean calDaysIgnoreYear(Date date, Family family){
+        //return true if the dates are within 30 days ignoring year.
+        boolean res = false;
+        Date now = new Date();
+        int years = HelperMethods.calculateYear(family.getMarriageDate(), now);
+        int months = HelperMethods.calculateMonth(family.getMarriageDate(), now);
+        if(years > 1 && months > 1){
+
+        }
+
+        int month = family.getMarriageDate().getMonth();
+        if(month == 1){
+
+        }
+        return res;
+    }
 }

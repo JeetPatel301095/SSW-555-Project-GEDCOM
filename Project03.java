@@ -4,7 +4,7 @@ import java.io.*;
 
 class Project03
 {
-	public static boolean testing = true;
+	public static boolean testing = false;
 	
     public static void main(String args[]) throws Exception
     {
@@ -183,8 +183,6 @@ class Project03
 
 //        sprint 02 user stories
         Sprint2 sprint2 = new Sprint2();
-
-
         sprint2.US09(Indi, fams);
         sprint2.US10(Indi, fams);
         sprint2.US11(fams);
@@ -229,10 +227,21 @@ class Project03
             System.out.println();
         }
 
+        //sprint04 user stories
         Sprint4 sprint4 = new Sprint4();
-
         sprint4.US34(Indi, fams);
         sprint4.US35(Indi);
+        ArrayList<Person> US38 = sprint4.US38(Indi);
+        System.out.println("Living people whose birthday is in 30 days:");
+        System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        for(Person in : US38)
+        {
+            System.out.format("%10s %20s %20s %20s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
+        }
+
+
 
         if(testing) {
 	        Sprint1Test test = new Sprint1Test();
