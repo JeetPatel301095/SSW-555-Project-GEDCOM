@@ -216,6 +216,10 @@ class Project03 {
 
         //sprint04 user stories
         Sprint4 sprint4 = new Sprint4();
+        
+        sprint4.US32(Indi, fams);
+        sprint4.US33(Indi, fams);
+        
         sprint4.US34(Indi, fams);
         sprint4.US35(Indi);
 
@@ -291,7 +295,8 @@ class Project03 {
 	        sprint03Test.testUS31();
 
 	        Sprint04Test sprint04test = new Sprint04Test();
-
+	        sprint04test.testUS32();
+	        sprint04test.testUS33();
 	        sprint04test.testUS34();
 	        sprint04test.testUS35();
             sprint04test.testUS36();

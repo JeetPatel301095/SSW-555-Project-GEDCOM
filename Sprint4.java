@@ -1,11 +1,160 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
 
 public class Sprint4 {
+	
+	public int US32(ArrayList<Person> indi, ArrayList<Family> fams) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int errorCode = 0;
+		ArrayList<ArrayList<Person>> a = new ArrayList<ArrayList<Person>>();
+		ArrayList<Person> temp;
+		boolean flag;
+		HashSet<Date> dates;
+		
+		for(Family fam: fams) {
+			if(!fam.getChildrenIds().isEmpty()) {
+				ArrayList<String> c = fam.getChildrenIds();
+				Person p1 = new Person();
+				Person p2 = new Person();
+				dates = new HashSet<Date>(); ;
+				for(int i = 0; i < c.size() - 1; i++) { // i loop
+					for(Person p: indi) {
+						if(c.get(i).equals(p.getId())) {
+							p1 = p;
+							break;
+						}
+					}
+					
+					if(p1.getBirthDate() != null) {
+						if(dates.contains(p1.getBirthDate()))
+							continue;
+					}
+					
+					temp = new ArrayList<Person>();
+					flag = false;
+					
+					for(int j = i + 1; j < c.size(); j++) { // j loop
+						
+						for(Person p: indi) {
+							if(c.get(j).equals(p.getId())) {
+								p2 = p;
+								break;
+							}
+						}
+						
+						if(p1.getBirthDate() != null && p2.getBirthDate() != null) {
+							if(p1.getBirthDate().compareTo(p2.getBirthDate()) == 0) {
+								if(flag == false)
+									flag = true;
+								
+								if(errorCode == 0)
+									errorCode = 1;
+								
+								dates.add(p1.getBirthDate());
+								
+								temp.add(p2);
+							}
+						}
+						
+					}
+					
+					if(flag == true) {
+						temp.add(p1);
+					}
+					
+					if(!temp.isEmpty())
+						a.add(temp);
+				}
+			}
+		}
+		
+		if(!a.isEmpty()) {
+			
+			System.out.println("US32: List of multiple births:");
+			System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+	        System.out.println();
+	        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+			for(ArrayList<Person> births: a) {
+				for(Person in: births) {
+					System.out.format("%10s %20s %20s %35s %20s %20s %20s %20s %20s",
+		                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+		            System.out.println();
+				}
+			}
+		}
+		
+		return errorCode;
+	}
+	
+	public int US33(ArrayList<Person> indi, ArrayList<Family> fams) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int errorCode = 0;
+		boolean husDead, wifeDead;
+		ArrayList<Person> orphans = new ArrayList<Person>();
+		for(Family fam: fams) {
+			husDead = false;
+			wifeDead = false;
+			if(!fam.getHusbandId().equals("NA")) {
+				if(!fam.getWifeId().equals("NA")) {
+					String hid = fam.getHusbandId();
+					String wid = fam.getWifeId();
+					for(Person p: indi) {
+						if(p.getId().equals(hid)){
+							if(p.getDead()) {
+								husDead = true;
+							}
+						}
+					}
+					
+					for(Person p: indi) {
+						if(p.getId().equals(wid)){
+							if(p.getDead()) {
+								wifeDead = true;
+							}
+						}
+					}
+					
+					if(husDead && wifeDead) {
+						
+						if(!fam.getChildrenIds().isEmpty()) {
+							for(String id: fam.getChildrenIds()) {
+								for(Person p: indi) {
+									if(id.equals(p.getId())) {
+										if(p.getAge() < 18) {
+											orphans.add(p);
+											
+											if(errorCode == 0)
+												errorCode = 1; // means 1 orphan
+											else if(errorCode == 1)
+												errorCode = 2; // means multiple orphans
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		System.out.println("US33: List of all orphans:");
+		System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
+        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		for(Person in: orphans) {
+			System.out.format("%10s %20s %20s %35s %20s %20s %20s %20s %20s",
+                    in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
+            System.out.println();
+		}
+		
+		return errorCode;
+	}
 
 
     /*  Chris Rudel US34

@@ -1,13 +1,74 @@
 import junit.framework.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class Sprint04Test {
+public class Sprint04Test extends Person {
+	
+	@Test
+	public void testUS32() {
+		Sprint4 s4 = new Sprint4();
+		ArrayList<Person> indi = new ArrayList<>();
+        ArrayList<Family> fams = new ArrayList<>();
+        Family f = new Family();
+        Person c1 = new Person();
+        c1.setId("c1");
+        Person c2 = new Person();
+        c2.setId("c2");
+        int d = Integer.parseInt("1");
+        int m = changeMonthFormatToInt("JAN");
+        int y = Integer.parseInt("2010");
+        Calendar c = Calendar.getInstance();
+        c.set(y,m,d); 
+        c1.BirthDate=c.getTime();
+        c2.BirthDate=c.getTime();
+        c1.setAge();
+        c2.setAge();
+        f.addChild("c1");
+        f.addChild("c2");
+        indi.add(c1);
+        indi.add(c2);
+        fams.add(f);
+        assertEquals(1, s4.US32(indi, fams));
+	}
+	
+	@Test
+	public void testUS33() {
+		Sprint4 s4 = new Sprint4();
+		ArrayList<Person> indi = new ArrayList<>();
+        ArrayList<Family> fams = new ArrayList<>();
+        Person h = new Person();
+        h.setDead(true);
+        Person w = new Person();
+        w.setDead(true);
+        Person c = new Person();
+        c.setId("c1");
+        c.setBirthDate("1", "1", "2010");
+        Family f = new Family();
+        f.setDad(h);
+        f.setMom(w);
+        f.addChild("c1");
+        
+        indi.add(h);
+        indi.add(w);
+        indi.add(c);
+        fams.add(f);
+        
+        assertEquals(1, s4.US33(indi, fams));
+        
+        Person c2 = new Person();
+        c2.setId("c2");
+        c2.setBirthDate("1", "1", "2010");
+        f.addChild("c2");
+        indi.add(c2);
+        
+        assertEquals(2, s4.US33(indi, fams));
+	}
 
 
     @Test
