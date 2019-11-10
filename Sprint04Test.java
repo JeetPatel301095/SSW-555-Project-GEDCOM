@@ -171,30 +171,32 @@ public class Sprint04Test extends Person {
 
     @Test
     public void testUS38(){
+	    //Warning: this test will fail after 11.25.2019!!!!!!!!!!!!
         Sprint4 sprint4 = new Sprint4();
         ArrayList<Person> individs = new ArrayList<>();
         Person p1 = new Person();
         p1.setId("p01");
         p1.setFirstName("wxs");
         p1.setLastName("Qwd");
-        p1.setBirthDate("6", "NOV", "2019");
+        p1.setBirthDate("25", "NOV", "1999");
         individs.add(p1);
         assertEquals(1,sprint4.US38(individs).size());
     }
 
     @Test
     public void testUS39(){
+        //Warning: this test will fail after 11.25.2019!!!!!!!!!!!!
         Sprint4 sprint4 = new Sprint4();
         ArrayList<Family> fam = new ArrayList<>();
         Family family = new Family();
-        family.setMarriageDate("6", "NOV", "2019");
+        family.setMarriageDate("25", "NOV", "2019");
         fam.add(family);
         ArrayList<Person> individs = new ArrayList<>();
         Person p1 = new Person();
         p1.setId("p01");
         p1.setFirstName("wxs");
         p1.setLastName("Qwd");
-        p1.setBirthDate("6", "NOV", "2019");
+        p1.setBirthDate("25", "NOV", "2019");
         assertEquals(1,sprint4.US39(fam,individs).size());
 
     }
