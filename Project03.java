@@ -189,7 +189,7 @@ class Project03 {
         ArrayList<Person> us29 = sprint3.US29(Indi);
         ArrayList<Person> us30 = sprint3.US30(Indi);
         ArrayList<Person> us31 = sprint3.US31(Indi);
-        System.out.println("List of People Deceased");
+        System.out.println("US29: List of People Deceased");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         for(Person in : us29)
         {
@@ -197,7 +197,7 @@ class Project03 {
                     in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
             System.out.println();
         }
-        System.out.println("Living people who are married.");
+        System.out.println("US30: Living people who are married.");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         for(Person in : us30)
         {
@@ -205,7 +205,7 @@ class Project03 {
                     in.getId(), in.getFirstName() + in.getLastName(), in.getSex(), simpleDateFormat.format(in.getBirthDate()), in.getAge(), !in.getDead(), (in.getDeathDate() == null ? "NA" : simpleDateFormat.format(in.getDeathDate()) ),  in.getFamc(), in.getFams());
             System.out.println();
         }
-        System.out.println("All living people over 30 who have never been married.");
+        System.out.println("US31: All living people over 30 who have never been married.");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         for(Person in : us31)
         {
@@ -241,7 +241,7 @@ class Project03 {
             System.out.println();
         }
         ArrayList<Person> US38 = sprint4.US38(Indi);
-        System.out.println("Living people whose birthday is in 30 days:");
+        System.out.println("US38: Living people whose birthday is in 30 days:");
         System.out.printf("%10s %28s %25s %20s %20s %20s %20s %20s %20s", "ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse");
         System.out.println();
         for(Person in : US38)
@@ -254,7 +254,7 @@ class Project03 {
 
 
         ArrayList<Family> US39 = sprint4.US39(fams, Indi);
-        System.out.println("Living couple whose marriage anniversaries occur in the next 30 days:");
+        System.out.println("US39: Living couple whose marriage anniversaries occur in the next 30 days:");
         System.out.printf("%20s %20s %20s", "Husband Name", "Wife Name", "anniversary date");
         System.out.println();
         for(Family fam : US39)
